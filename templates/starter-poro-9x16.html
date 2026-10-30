@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="id">
+<!-- 
+  Poro Web Explainer Starter — 9:16 Vertical (1080x1920, 30 FPS)
+  Design System: Poro Local v2 (Paper, Ink, Lime, Space Grotesk)
+  Engine: HTML5 + CSS + SVG + GSAP + Procedural Web Audio Foley
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poro Web Explainer — 9:16 Starter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* ==============================================================
+     PORO LOCAL DESIGN TOKENS (OFFICIAL COLOR SYSTEM)
+     ============================================================== */
+  --poro-paper:   #FAFAFF;  /* Latar kanvas utama (Kertas terang bersih) */
+  --poro-ground:  #E3E7F2;  /* Platform isometrik tempat objek berpijak */
+  --poro-ink:     #141D3F;  /* Garis kontur utama, teks headline, border solid */
+  --poro-navy:    #344773;  /* Struktur bodi mekanik, cangkang luar */
+  --poro-mid:     #64769B;  /* Garis penunjuk callout, shading sekunder */
+  --poro-focus:   #D1FF30;  /* ELECTRIC LIME — Satu-satunya aksen sinyal aktif */
+  --poro-heat:    #E67E22;  /* Aksi fungsional: radiasi panas, kawat membara */
+  --poro-cool:    #38BDF8;  /* Aksi fungsional: aliran dingin, ruang vakum */
+
+  /* Stage dimensions */
+  --stage-w: 1080px;
+  --stage-h: 1920px;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #0B0E17;
+  overflow: hidden;
+  user-select: none;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  color: var(--poro-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==============================================================
+   RESPONSIVE AUTO-FIT STAGE (1080x1920)
+   ============================================================== */
+#stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--stage-w);
+  height: var(--stage-h);
+  background: var(--poro-paper);
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center center;
+  overflow: hidden;
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.7);
+}
+
+/* Swiss Grid Blueprint Background */
+#blueprint-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(20, 29, 63, 0.05) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(20, 29, 63, 0.05) 1.5px, transparent 1.5px);
+  background-size: 60px 60px;
+  background-position: center center;
+}
+
+/* World Camera Rig */
+#world {
+  position: absolute;
+  inset: 0;
+  width: 1080px;
+  height: 1920px;
+  transform-origin: 540px 960px;
+  will-change: transform;
+}
+
+svg {
+  position: absolute;
+  inset: 0;
+  width: 1080px;
+  height: 1920px;
+  overflow: visible;
+}
+
+/* ==============================================================
+   SAFE ZONE BOUNDARIES (MULTI-PLATFORM 9:16)
+   ============================================================== */
+#hud-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.safe-zone {
+  position: absolute;
+  left: 110px;
+  width: 860px; /* X: 110 -> 970 */
+  pointer-events: none;
+}
+.top-narrative {
+  top: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+}
+.subtitles-zone {
+  top: 1250px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Safe Zone Debug Guide Overlay */
+#safezone-guide {
+  position: absolute;
+  left: 110px;
+  top: 270px;
+  width: 790px;
+  height: 1130px; /* Y: 270 -> 1400 */
+  border: 2px dashed rgba(22, 163, 74, 0.6);
+  pointer-events: none;
+  z-index: 100;
+  display: none;
+}
+#safezone-guide::before {
+  content: "PORO ESSENTIAL SAFE ZONE (X:110-900 | Y:270-1400)";
+  position: absolute;
+  top: -24px;
+  left: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #16a34a;
+}
+#safezone-guide::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 930px; /* 1200 - 270 */
+  height: 200px;
+  border-top: 2px dashed rgba(234, 88, 12, 0.6);
+  background: rgba(234, 88, 12, 0.05);
+}
+
+/* ==============================================================
+   TYPOGRAPHY & SENSORY BADGES
+   ============================================================== */
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.kicker-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  background: var(--poro-focus);
+  color: var(--poro-ink);
+  border: 2px solid var(--poro-ink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.headline-text {
+  font-size: 68px;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--poro-ink);
+  margin: 0 0 12px 0;
+}
+
+.subheadline-text {
+  font-size: 32px;
+  line-height: 1.35;
+  color: var(--poro-navy);
+  margin: 0;
+}
+
+/* Adaptive Sensory Badges */
+.sensory-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 22px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 800;
+  border-radius: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 4px 4px 0px var(--poro-ink);
+  opacity: 0;
+  transform: scale(0.7);
+  will-change: transform, opacity;
+}
+.badge-mech {
+  background: var(--poro-focus);
+  color: var(--poro-ink);
+  border: 2px solid var(--poro-ink);
+}
+.badge-physics {
+  background: var(--poro-ink);
+  color: var(--poro-cool);
+  border: 2px solid var(--poro-cool);
+}
+
+/* Technical Callout Card (Editorial Swiss Grid) */
+.callout-card {
+  position: absolute;
+  padding: 16px 20px;
+  background: #FFFFFF;
+  border: 2px solid var(--poro-ink);
+  box-shadow: 6px 6px 0px rgba(20, 29, 63, 0.15);
+  border-radius: 2px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: transform, opacity;
+}
+.callout-card .title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--poro-ink);
+  margin-bottom: 4px;
+}
+.callout-card .desc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  color: var(--poro-mid);
+}
+
+/* 3-Beat Metric Scale Punch Card */
+.metric-card {
+  position: absolute;
+  left: 110px;
+  width: 790px;
+  bottom: 340px;
+  padding: 24px 28px;
+  background: #FFFFFF;
+  border: 2.5px solid var(--poro-ink);
+  box-shadow: 8px 8px 0px var(--poro-ink);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: transform, opacity;
+}
+.metric-card .metric-info .lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--poro-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.metric-card .metric-info .claim {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--poro-ink);
+}
+.metric-card .metric-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--poro-ink);
+  letter-spacing: -0.03em;
+  transform-origin: right center;
+}
+.metric-card .metric-val span {
+  color: var(--poro-heat);
+}
+
+/* Subtitle / Karaoke Rail */
+.subtitles-box {
+  padding: 12px 24px;
+  background: rgba(20, 29, 63, 0.9);
+  border: 1.5px solid var(--poro-ink);
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  max-width: 760px;
+}
+.subtitles-box span.hl {
+  color: var(--poro-focus);
+}
+
+/* ==============================================================
+   INTERACTIVE DEBUG SCRUBBER (?debug=1)
+   ============================================================== */
+#dbg {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: none;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: rgba(14, 18, 32, 0.94);
+  color: #E2E8F0;
+  font: 14px 'JetBrains Mono', monospace;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+#dbg button {
+  background: var(--poro-focus);
+  color: var(--poro-ink);
+  border: none;
+  padding: 8px 16px;
+  font-weight: 800;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#dbg button.active {
+  background: #E2E8F0;
+  color: #0F172A;
+}
+#dbg input[type="range"] {
+  width: 320px;
+  cursor: pointer;
+}
+#dbg span {
+  min-width: 65px;
+  font-variant-numeric: tabular-nums;
+}
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <!-- Blueprint Grid -->
+  <div id="blueprint-grid"></div>
+
+  <!-- Safe Zone Visual Guide (?debug=1) -->
+  <div id="safezone-guide"></div>
+
+  <!-- World Camera Rig -->
+  <div id="world">
+    
+    <!-- 2.5D ISOMETRIC VECTOR WORLD (SVG) -->
+    <svg viewBox="0 0 1080 1920">
+      <defs>
+        <!-- Gradients for Faceted Geometry Shading -->
+        <linearGradient id="heat-glow" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#E67E22" />
+          <stop offset="100%" stop-color="#F59E0B" />
+        </linearGradient>
+        <linearGradient id="cool-glow" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.8" />
+          <stop offset="100%" stop-color="#38BDF8" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+
+      <!-- 1. ISOMETRIC GROUND PLATFORM -->
+      <g id="iso-ground" transform="translate(540, 1020)">
+        <!-- Rhombus Base Platform -->
+        <polygon points="0,-180 420,0 0,180 -420,0" fill="var(--poro-ground)" stroke="var(--poro-ink)" stroke-width="2.5" />
+        <!-- Platform Thickness / Depth -->
+        <polygon points="-420,0 0,180 0,220 -420,40" fill="#CBD5E1" stroke="var(--poro-ink)" stroke-width="2.5" />
+        <polygon points="0,180 420,0 420,40 0,220" fill="#94A3B8" stroke="var(--poro-ink)" stroke-width="2.5" />
+      </g>
+
+      <!-- 2. MESO-SCALE 2.5D MECHANICAL RIG (EXAMPLE: ZOJIRUSHI / CUTAWAY CYLINDER) -->
+      <g id="iso-assembly" transform="translate(540, 860)">
+        
+        <!-- Internal Vacuum Cavity (Faceted Shading) -->
+        <g id="part-cavity" opacity="0">
+          <!-- Back Wall Cylinder Slice -->
+          <path d="M -110,-140 C -110,-180 110,-180 110,-140 L 110,120 C 110,150 -110,150 -110,120 Z" fill="#F1F5F9" stroke="var(--poro-navy)" stroke-width="2" />
+          
+          <!-- Thermal Heat Radiation Waves (USDM Domain: Thermodynamics) -->
+          <g id="thermal-rays" opacity="0">
+            <path d="M -80,-40 Q 0,-60 80,-40" stroke="var(--poro-heat)" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="8 6" />
+            <path d="M -80,0 Q 0,-20 80,0" stroke="var(--poro-heat)" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="8 6" />
+            <path d="M -80,40 Q 0,20 80,40" stroke="var(--poro-heat)" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="8 6" />
+          </g>
+
+          <!-- 1mm Vacuum Gap Layer (USDM Domain: Fluids & Vacuum) -->
+          <rect id="vacuum-gap" x="-120" y="-130" width="10" height="250" fill="var(--poro-cool)" opacity="0.6" stroke="var(--poro-ink)" stroke-width="1.5" />
+        </g>
+
+        <!-- Outer Peeled Shell (Cutaway Half Slice) -->
+        <g id="part-outer-shell">
+          <!-- 3-Faceted Isometric Cylinder Body -->
+          <!-- Left Shade -->
+          <path d="M -130,-150 L 0,-80 L 0,160 L -130,90 Z" fill="var(--poro-navy)" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <!-- Right Mid -->
+          <path d="M 0,-80 L 130,-150 L 130,90 L 0,160 Z" fill="#4B6396" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <!-- Top Lip (Highlight) -->
+          <polygon points="-130,-150 0,-210 130,-150 0,-80" fill="var(--poro-ground)" stroke="var(--poro-ink)" stroke-width="2.5" />
+        </g>
+
+        <!-- Stopper & Seal (Silicone Gasket - Mechanical Domain) -->
+        <g id="part-stopper" transform="translate(0, -220)">
+          <ellipse cx="0" cy="0" rx="90" ry="45" fill="var(--poro-focus)" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <path d="M -90,0 C -90,25 90,25 90,0 L 90,30 C 90,55 -90,55 -90,30 Z" fill="#B4E612" stroke="var(--poro-ink)" stroke-width="2.5" />
+        </g>
+
+        <!-- Dynamic Tracking Anchor Point (Live 2D Leader Line) -->
+        <circle id="anchor-pt" cx="-120" cy="0" r="5" fill="var(--poro-focus)" stroke="var(--poro-ink)" stroke-width="2" />
+        <path id="leader-line" d="M -120,0 L -220,-80 L -310,-80" stroke="var(--poro-ink)" stroke-width="2" fill="none" stroke-dasharray="250" stroke-dashoffset="250" />
+      </g>
+    </svg>
+    
+    <!-- 4. TECHNICAL CALLOUT CARD (ANCHORED IN WORLD) -->
+    <div class="callout-card" id="card-callout" style="left: 110px; top: 740px;">
+      <div class="title">CELAH VAKUM 1.0 MM</div>
+      <div class="desc">0 Molekul Udara · Konduksi = 0%</div>
+    </div>
+
+  </div> <!-- /world -->
+
+  <!-- ==============================================================
+       FIXED HUD OVERLAY LAYER (100% IMMUNE TO CAMERA ZOOM)
+       ============================================================== -->
+  <div id="hud-layer">
+    <!-- 3. EDITORIAL NARRATIVE & KINETIC BADGES -->
+    <div class="safe-zone top-narrative">
+      <div class="kicker-tag" id="kicker-badge">[ 01 // VAKUM GANDA ]</div>
+      <h1 class="headline-text" id="scene-title">1mm Ruang Hampa Menahan Panas 6 Jam</h1>
+      <p class="subheadline-text" id="scene-desc">Bukan sekadar botol biasa. Di antara dua dinding baja, seluruh molekul udara disedot habis.</p>
+      
+      <!-- Adaptive Sensory Badge -->
+      <div style="margin-top: 10px; width: 100%; position: relative; height: 48px;">
+        <div class="sensory-badge badge-mech" id="badge-sensory">[ KLIK! RAPAT SEMPURNA ]</div>
+      </div>
+    </div>
+
+    <!-- 5. 3-BEAT METRIC SCALE PUNCH -->
+    <div class="metric-card" id="card-metric">
+      <div class="metric-info">
+        <div class="lbl">UJI STANDAR JIS S 2006</div>
+        <div class="claim">Retensi Suhu Air Mendidih</div>
+      </div>
+      <div class="metric-val" id="metric-digit">≥ <span>71°C</span></div>
+    </div>
+
+    <!-- 6. SUBTITLE KARAOKE RAIL -->
+    <div class="safe-zone subtitles-zone">
+      <div class="subtitles-box" id="karaoke-text">
+        "Di dalam celah <span class="hl">satu milimeter</span> ini, panas terperangkap dan memantul kembali."
+      </div>
+    </div>
+  </div> <!-- /hud-layer -->
+
+</div> <!-- /stage -->
+
+<!-- Audio Elements -->
+<audio id="vo" src="" preload="auto"></audio>
+
+<!-- Interactive Debug Controls (?debug=1) -->
+<div id="dbg">
+  <button id="dPlay">Play</button>
+  <input id="dScrub" type="range" min="0" max="1000" value="0">
+  <span id="dClock">0.00s</span>
+  <button id="dSafe">Safe Zone: Off</button>
+  <button id="dAudio">Audio: Mute</button>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+/* ==============================================================
+   PRODUCTION CONFIGURATION
+   ============================================================== */
+const W = 1080;
+const H = 1920;
+const DUR = 24.0; // Durasi total (Detik)
+
+const $ = s => document.querySelector(s);
+
+/* ==============================================================
+   RESPONSIVE AUTO-FIT STAGE (RESIZE LISTENER)
+   ============================================================== */
+function fitStage() {
+  const scale = Math.min(window.innerWidth / W, window.innerHeight / H);
+  $('#stage').style.transform = `translate(-50%, -50%) scale(${scale})`;
+}
+window.addEventListener('resize', fitStage);
+fitStage();
+
+/* ==============================================================
+   PROCEDURAL WEB AUDIO FOLEY SYNTHESIZER
+   ============================================================== */
+let audioCtx = null;
+let soundEnabled = false;
+
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  soundEnabled = true;
+}
+
+function playFoley(type, volume = 0.5) {
+  if (!soundEnabled || !audioCtx) return;
+  const now = audioCtx.currentTime;
+
+  if (type === 'click') {
+    // Sharp mechanical snap
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(1400, now);
+    osc.frequency.exponentialRampToValueAtTime(120, now + 0.04);
+    gain.gain.setValueAtTime(volume * 0.8, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + 0.05);
+  } else if (type === 'whoosh') {
+    // Air pneumatic whoosh
+    const bufferSize = audioCtx.sampleRate * 0.25;
+    const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const output = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) output[i] = Math.random() * 2 - 1;
+    const whiteNoise = audioCtx.createBufferSource();
+    whiteNoise.buffer = buffer;
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(400, now);
+    filter.frequency.exponentialRampToValueAtTime(1800, now + 0.12);
+    filter.frequency.exponentialRampToValueAtTime(300, now + 0.25);
+    const gain = audioCtx.createGain();
+    gain.gain.setValueAtTime(0.01, now);
+    gain.gain.linearRampToValueAtTime(volume * 0.6, now + 0.1);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+    whiteNoise.connect(filter);
+    filter.connect(gain);
+    gain.connect(audioCtx.destination);
+    whiteNoise.start(now);
+    whiteNoise.stop(now + 0.25);
+  } else if (type === 'sub_drop') {
+    // 80Hz Sub-bass test metric impact
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(85, now);
+    osc.frequency.exponentialRampToValueAtTime(38, now + 0.35);
+    gain.gain.setValueAtTime(volume * 0.9, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + 0.36);
+  }
+}
+
+/* ==============================================================
+   MASTER GSAP TIMELINE (100% DETERMINISTIC)
+   ============================================================== */
+const tl = gsap.timeline({
+  paused: true,
+  repeat: -1,
+  onComplete: () => tl.play(0)
+});
+
+// Shot 1: Horizon Hook (0.0s - 4.5s)
+tl.fromTo('#world', 
+  { scale: 0.9, y: 120 }, 
+  { scale: 1.0, y: 0, duration: 3.5, ease: 'power2.out' }, 0);
+
+tl.fromTo('#kicker-badge', 
+  { opacity: 0, y: -20 }, 
+  { opacity: 1, y: 0, duration: 0.6, ease: 'back.out(2)' }, 0.4);
+
+tl.fromTo('#scene-title', 
+  { opacity: 0, y: 30 }, 
+  { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.6);
+
+// Foley Trigger 1: Whoosh on entrance
+tl.call(() => playFoley('whoosh', 0.5), null, 0.4);
+
+// Shot 2: Orbit Slice & Exploded Cutaway (4.5s - 12.0s)
+tl.to('#part-outer-shell', {
+  x: 90,
+  y: -50,
+  opacity: 0.4,
+  duration: 1.2,
+  ease: 'power3.inOut'
+}, 4.8);
+
+tl.to('#part-stopper', {
+  y: -360,
+  duration: 1.0,
+  ease: 'back.out(1.7)'
+}, 5.0);
+
+tl.to('#part-cavity', { opacity: 1, duration: 0.5 }, 5.2);
+
+// Foley Trigger 2: Mechanical Click on Stopper Pop
+tl.call(() => playFoley('click', 0.8), null, 5.0);
+
+// Sensory Badge Pop
+tl.to('#badge-sensory', {
+  opacity: 1,
+  scale: 1.0,
+  duration: 0.4,
+  ease: 'back.out(2.5)'
+}, 5.4);
+
+// Leader line & Callout Card
+tl.to('#leader-line', { strokeDashoffset: 0, duration: 0.8, ease: 'power2.out' }, 6.0);
+tl.to('#card-callout', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 6.4);
+
+// Shot 3: Thermodynamics Waves & Metric Proof (12.0s - 20.0s)
+tl.to('#thermal-rays', { opacity: 1, duration: 0.8 }, 11.5);
+
+// 3-Beat Metric Punch
+// Beat 1: Slide in
+tl.to('#card-metric', { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(1.5)' }, 12.2);
+// Foley Trigger 3: Sub-bass 80Hz Impact
+tl.call(() => playFoley('sub_drop', 0.85), null, 12.4);
+// Beat 2: Digit Pop 1.35x
+tl.fromTo('#metric-digit', 
+  { scale: 1.0 }, 
+  { scale: 1.35, duration: 0.25, yoyo: true, repeat: 1, ease: 'power2.out' }, 12.4);
+// Beat 3: Border flash
+tl.to('#card-metric', { borderColor: 'var(--poro-focus)', duration: 0.2, yoyo: true, repeat: 1 }, 12.8);
+
+// Shot 4: Outro Recoil & Snap-Out (20.0s - 24.0s)
+tl.to(['#card-metric', '#card-callout', '#badge-sensory'], { opacity: 0, duration: 0.4 }, 21.0);
+tl.to('#part-outer-shell', { x: 0, y: 0, opacity: 1, duration: 0.6, ease: 'power3.inOut' }, 21.4);
+tl.to('#part-stopper', { y: -220, duration: 0.5, ease: 'back.in(1.5)' }, 21.6);
+tl.call(() => playFoley('click', 0.7), null, 22.1);
+tl.to('#world', { scale: 0.9, y: 120, duration: 0.8, ease: 'power3.in' }, 22.8);
+
+/* ==============================================================
+   TICKER LOOP & AUDIO DRIFT SYNCHRONIZATION
+   ============================================================== */
+const vo = $('#vo');
+const hasVO = vo.src && vo.src.length > 5;
+
+gsap.ticker.add(() => {
+  if (!tl.paused()) {
+    const t = tl.time();
+    updateScrubber(t);
+
+    // Audio Drift Correction (< 100ms)
+    if (hasVO && !vo.paused) {
+      if (Math.abs(vo.currentTime - t) > 0.1) {
+        vo.currentTime = t;
+      }
+    }
+  }
+});
+
+/* ==============================================================
+   DEBUG PANEL (?debug=1) & EXPORT CONTRACT
+   ============================================================== */
+const urlParams = new URLSearchParams(window.location.search);
+const isDebug = urlParams.get('debug') === '1';
+const isClean = urlParams.get('clean') === '1';
+
+if (isDebug) {
+  $('#dbg').style.display = 'flex';
+}
+
+const dPlay = $('#dPlay');
+const dScrub = $('#dScrub');
+const dClock = $('#dClock');
+const dSafe = $('#dSafe');
+const dAudio = $('#dAudio');
+
+function updateScrubber(t) {
+  dScrub.value = Math.round((t / DUR) * 1000);
+  dClock.textContent = `${t.toFixed(2).padStart(5, '0')}s`;
+}
+
+function startPlayback() {
+  initAudio();
+  tl.play();
+  if (hasVO) vo.play().catch(() => {});
+  dPlay.textContent = 'Pause';
+}
+
+function pausePlayback() {
+  tl.pause();
+  if (hasVO) vo.pause();
+  dPlay.textContent = 'Play';
+}
+
+dPlay.addEventListener('click', () => {
+  if (tl.paused()) startPlayback();
+  else pausePlayback();
+});
+
+dScrub.addEventListener('input', e => {
+  pausePlayback();
+  const targetTime = (Number(e.target.value) / 1000) * DUR;
+  tl.time(targetTime);
+  if (hasVO) vo.currentTime = targetTime;
+  updateScrubber(targetTime);
+});
+
+dSafe.addEventListener('click', () => {
+  const guide = $('#safezone-guide');
+  const active = guide.style.display === 'block';
+  guide.style.display = active ? 'none' : 'block';
+  dSafe.textContent = active ? 'Safe Zone: Off' : 'Safe Zone: On';
+  dSafe.classList.toggle('active', !active);
+});
+
+dAudio.addEventListener('click', () => {
+  initAudio();
+  soundEnabled = !soundEnabled;
+  dAudio.textContent = soundEnabled ? 'Audio: On' : 'Audio: Mute';
+  dAudio.classList.toggle('active', soundEnabled);
+});
+
+// Keyboard Shortcuts: Space (Play/Pause), KeyR (Restart)
+window.addEventListener('keydown', e => {
+  if (e.code === 'Space') {
+    e.preventDefault();
+    if (tl.paused()) startPlayback();
+    else pausePlayback();
+  } else if (e.code === 'KeyR') {
+    initAudio();
+    tl.play(0);
+    if (hasVO) vo.currentTime = 0;
+    dPlay.textContent = 'Pause';
+  }
+});
+
+// Double click screen to play audio if blocked by browser autoplay
+window.addEventListener('click', () => {
+  if (!soundEnabled) {
+    initAudio();
+    dAudio.textContent = 'Audio: On';
+    dAudio.classList.add('active');
+  }
+}, { once: true });
+
+/* Frame-by-Frame Export Contract */
+window.OPENER = {
+  W: 1080,
+  H: 1920,
+  duration: DUR,
+  ready: true,
+  seek(t) {
+    tl.pause(t, false);
+    if (hasVO) vo.currentTime = t;
+    updateScrubber(t);
+  }
+};
+
+// Initial state
+tl.pause(0);
+if (!isClean) {
+  startPlayback();
+}
+</script>
+</body>
+</html>

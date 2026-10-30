@@ -1,15 +1,40 @@
-# 3D Semi-Real Explainer Framework
-### Industrial-Grade 3D Semi-Realistic Motion Graphics & Technical Explainer System
-**Engine:** Blender 5.x / 4.2+ (EEVEE Next) | **Design System:** VOLT Design System 1.1 | **Format:** Vertical 9:16 ($1080 \times 1920$, 30 FPS) | **Audio Standard:** EBU R128 ($-14\text{ LUFS}$)
+# Poro Technical Explainer Framework
+### Industrial-Grade 3D & 2.5D Web-Native Motion Graphics System
+
+A dual-engine production framework for high-fidelity vertical (9:16, $1080 \times 1920$, 30 FPS) technical explainers and industrial reverse-engineering videos:
+1. **Engine 1: 3D Semi-Real Explainer** — Blender 5.x / 4.2+ (EEVEE Next) + VOLT Design System 1.1.
+2. **Engine 2: Poro Web Explainer** — Web-Native (HTML5 + CSS + SVG + GSAP) + Poro Local Design System.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Blender: 5.x / 4.2+](https://img.shields.io/badge/Blender-EEVEE_Next-orange.svg)](https://www.blender.org/)
-[![Design: VOLT_DS_1.1](https://img.shields.io/badge/Design_System-VOLT_1.1-brightgreen.svg)](#volt-design-system-11)
+[![Web-Native: HTML5 + GSAP](https://img.shields.io/badge/Web--Native-GSAP_3.12-brightgreen.svg)](#engine-2-poro-web-explainer-web-native)
 [![Audio: EBU_R128](https://img.shields.io/badge/Audio-EBU_R128_%28--14_LUFS%29-blue.svg)](#sound-mapping-protocol-smp)
 
 ---
 
-## 🎬 Showcase: Zojirushi SM-WA48 Technical Explainer (v0.4 Master)
+## ⚡ Engine 2: Poro Web Explainer (Web-Native HTML5 + GSAP)
+
+A zero-render-dependency, lightweight web framework that generates complete 9:16 vertical explainers as a single self-contained HTML file. Powered by pure SVG 2.5D isometric geometry, continuous street parallax, procedural Web Audio foley, and strict Safe Zone compliance ($X: 110\text{--}900\text{px}$, $Y: 220\text{--}1400\text{px}$).
+
+### 🎬 Pilot Showcase: "Pelacakan GPS Bus Tanpa Akses Wi-Fi"
+
+| 01. Hook Halte & Peta | 02. Macro Zoom GNSS | 03. Dynamic Callout |
+| :---: | :---: | :---: |
+| ![Hero Intro](outputs/frame_01_hero_bus_3s.png) | ![GNSS Satellite](outputs/frame_02_satelit_gnss_18s.png) | ![Leader Line](outputs/frame_03_telematics_iot_32s.png) |
+| *Passenger check on Google Maps + continuous highway loop* | *Macro zoom into rooftop HVAC & passive GNSS puck* | *Live SVG leader line pointing to antenna* |
+
+| 04. Cutaway IoT & BTS | 05. 3-Beat Metric Punch |
+| :---: | :---: |
+| ![IoT Cutaway](outputs/frame_04_bts_gsm_48s.png) | ![Metric Proof](outputs/frame_05_metric_card_56s.png) |
+| *Dashboard cutaway revealing 4G Modem & M2M SIM* | *Sub-drop foley + scale-pop latency proof* |
+
+* 🌐 **Interactive Master Deliverable:** [`outputs/bus-gps-tracking.html`](outputs/bus-gps-tracking.html) (add `?debug=1` for interactive scrubber, frame seeker, audio toggle, and safe-zone overlay).
+* 📐 **Starter Base Template:** [`templates/starter-poro-9x16.html`](templates/starter-poro-9x16.html).
+* 🎙️ **Multi-Engine Voiceover Generator:** [`scripts/generate_vo.py`](scripts/generate_vo.py) (ElevenLabs, Gemini 2.0 Audio, Edge-TTS).
+
+---
+
+## 🎬 Engine 1: 3D Semi-Real Explainer (Blender EEVEE Next)
 
 Below are actual uncompressed master frames rendered via Blender EEVEE Next and composited with pure VOLT Design System 1.1 overlays:
 

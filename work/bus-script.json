@@ -1,0 +1,18 @@
+[
+  {
+    "id": "scene_1_hook",
+    "text": "Lagi nunggu di halte, kamu buka aplikasi di handphone dan posisi busnya kelihatan meluncur akurat di peta. Tapi pas kamu naik, busnya sama sekali nggak punya Wi-Fi untuk penumpang! Kok bisa Google Maps tahu posisi bus ini?"
+  },
+  {
+    "id": "scene_2_satellite",
+    "text": "Jawabannya ada di atap bus. Di balik bodi baja ini, terpasang antena penerima sinyal satelit. Empat satelit di orbit bumi memancarkan sinyal radio berkecepatan cahaya. Chip GPS di bus menghitung selisih waktu tersebut untuk mengunci koordinat garis lintang dan bujur secara pasif, tanpa butuh internet sama sekali!"
+  },
+  {
+    "id": "scene_3_telemetry_sim",
+    "text": "Lalu, gimana koordinat itu bisa terbang sampai ke layar handphonemu? Di dalam dashboard, modul GPS ini tersambung ke modem telemetri khusus yang dipasangi kartu SIM seluler! Modem inilah yang mengirimkan data titik koordinat lewat menara BTS ke server peta setiap lima detik."
+  },
+  {
+    "id": "scene_4_metric_loop",
+    "text": "Teruji latensi pembaruan posisi di bawah lima detik dengan akurasi radius tiga meter. Jadi yang nggak punya internet itu cuma penumpang, armadanya selalu online ke satelit dan BTS! Makanya, setiap kali kamu memantau posisi armada langsung di peta handphonemu:"
+  }
+]

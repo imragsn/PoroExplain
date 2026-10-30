@@ -1,0 +1,1232 @@
+<!doctype html>
+<html lang="id">
+<!-- 
+  Poro Web Explainer Production — 9:16 Vertical (1080x1920, 30 FPS)
+  Episode: "Bagaimana Bisa Bus Tanpa Wi-Fi Dideteksi di Google Maps?" (v2 Master Revision)
+  Design System: Poro Local v2 (Paper, Ink, Lime, Space Grotesk)
+  Anatomy Standard: City Bus Low-Deck (Aerodynamic Windshield, Rooftop HVAC, Elephant Mirrors)
+  Engine: HTML5 + CSS + SVG + GSAP Continuous Parallax + Procedural Foley Audio
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poro Explainer — Pelacakan GPS Bus (v2 Master)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* PORO LOCAL DESIGN TOKENS */
+  --poro-paper:   #FAFAFF;  /* Latar kanvas utama */
+  --poro-ground:  #E3E7F2;  /* Jalanan & aspal */
+  --poro-ink:     #141D3F;  /* Kontur solid, teks, border */
+  --poro-navy:    #344773;  /* Bodi bervolume */
+  --poro-mid:     #64769B;  /* Callout & secondary lines */
+  --poro-focus:   #D1FF30;  /* ELECTRIC LIME (Sinyal Atensi) */
+  --poro-heat:    #E67E22;  /* Transmisi GSM & panas */
+  --poro-cool:    #38BDF8;  /* Gelombang frekuensi satelit GNSS */
+
+  --stage-w: 1080px;
+  --stage-h: 1920px;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #080B14;
+  overflow: hidden;
+  user-select: none;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  color: var(--poro-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==============================================================
+   RESPONSIVE STAGE AUTO-FIT (1080x1920)
+   ============================================================== */
+#stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--stage-w);
+  height: var(--stage-h);
+  background: var(--poro-paper);
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center center;
+  overflow: hidden;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.85);
+}
+
+/* Full-bleed Blueprint Grid */
+#blueprint-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(20, 29, 63, 0.05) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(20, 29, 63, 0.05) 1.5px, transparent 1.5px);
+  background-size: 60px 60px;
+  background-position: center center;
+}
+
+/* World Camera Rig */
+#world {
+  position: absolute;
+  inset: 0;
+  width: 1080px;
+  height: 1920px;
+  transform-origin: 540px 960px;
+  will-change: transform;
+}
+
+svg {
+  position: absolute;
+  inset: 0;
+  width: 1080px;
+  height: 1920px;
+  overflow: visible;
+}
+
+/* ==============================================================
+   SPATIAL ZONING (ANTI-OVERLAP STRICT RULES)
+   Zona Atas   : Y: 270 - 480  (Headline & Kicker)
+   Zona Tengah : Y: 480 - 1180 (Visual Bus & Callout)
+   Zona Bawah  : Y: 1200 - 1400 (Subtitle OR Metric Card)
+   ============================================================== */
+#hud-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.safe-zone {
+  position: absolute;
+  left: 110px;
+  width: 860px;
+  pointer-events: none;
+}
+.top-narrative {
+  top: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+.subtitles-zone {
+  top: 1250px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#safezone-guide {
+  position: absolute;
+  left: 110px;
+  top: 270px;
+  width: 790px;
+  height: 1130px;
+  border: 2px dashed rgba(22, 163, 74, 0.65);
+  pointer-events: none;
+  z-index: 200;
+  display: none;
+}
+#safezone-guide::before {
+  content: "ESSENTIAL SAFE ZONE (110-900 px | 270-1400 px)";
+  position: absolute;
+  top: -24px;
+  left: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #16a34a;
+}
+#safezone-guide::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 930px;
+  height: 200px;
+  border-top: 2px dashed rgba(234, 88, 12, 0.65);
+  background: rgba(234, 88, 12, 0.04);
+}
+
+/* ==============================================================
+   TYPOGRAPHY & SENSORY BADGES
+   ============================================================== */
+.kicker-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  background: var(--poro-focus);
+  color: var(--poro-ink);
+  border: 2px solid var(--poro-ink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.headline-text {
+  font-size: 58px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--poro-ink);
+  margin: 0 0 10px 0;
+}
+
+.subheadline-text {
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--poro-navy);
+  margin: 0;
+}
+
+/* Single Sensory Badge (No Overlapping Multi-Badges) */
+.sensory-badge-container {
+  width: 100%;
+  height: 48px;
+  position: relative;
+}
+.sensory-badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 800;
+  border-radius: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 4px 4px 0px var(--poro-ink);
+  opacity: 0;
+  transform: scale(0.7);
+  will-change: transform, opacity;
+}
+.badge-lime {
+  background: var(--poro-focus);
+  color: var(--poro-ink);
+  border: 2px solid var(--poro-ink);
+}
+.badge-cool {
+  background: var(--poro-ink);
+  color: var(--poro-cool);
+  border: 2px solid var(--poro-cool);
+}
+.badge-heat {
+  background: var(--poro-heat);
+  color: #FFFFFF;
+  border: 2px solid var(--poro-ink);
+}
+
+/* Technical Callout Card (Centered in Mid-Zone) */
+.callout-card {
+  position: absolute;
+  padding: 16px 22px;
+  background: #FFFFFF;
+  border: 2.5px solid var(--poro-ink);
+  box-shadow: 6px 6px 0px rgba(20, 29, 63, 0.2);
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: transform, opacity;
+}
+.callout-card .title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--poro-ink);
+  margin-bottom: 4px;
+}
+.callout-card .desc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  color: var(--poro-mid);
+}
+
+/* 3-Beat Metric Scale Card (Occupies Bottom Zone Mutually Exclusive) */
+.metric-card {
+  position: absolute;
+  left: 110px;
+  width: 790px;
+  bottom: 240px;
+  padding: 24px 28px;
+  background: #FFFFFF;
+  border: 2.5px solid var(--poro-ink);
+  box-shadow: 8px 8px 0px var(--poro-ink);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: transform, opacity;
+  z-index: 100;
+}
+.metric-card .metric-info .lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--poro-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.metric-card .metric-info .claim {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--poro-ink);
+}
+.metric-card .metric-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 60px;
+  font-weight: 800;
+  color: var(--poro-ink);
+  letter-spacing: -0.03em;
+  transform-origin: right center;
+}
+.metric-card .metric-val span {
+  color: var(--poro-heat);
+}
+
+/* Subtitle Box (Lower Zone) */
+.subtitles-box {
+  padding: 14px 28px;
+  background: rgba(20, 29, 63, 0.94);
+  border: 2px solid var(--poro-ink);
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.3;
+  max-width: 760px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
+}
+.subtitles-box span.hl {
+  color: var(--poro-focus);
+}
+
+/* Header Watermark */
+#header-brand {
+  position: absolute;
+  left: 110px;
+  top: 70px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  pointer-events: none;
+}
+.brand-pill {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--poro-focus);
+  box-shadow: 0 0 14px var(--poro-focus);
+}
+.brand-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--poro-ink);
+  text-transform: uppercase;
+}
+
+/* Developer Scrubber (?debug=1) */
+#dbg {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: none;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 14px;
+  background: rgba(14, 18, 32, 0.96);
+  color: #E2E8F0;
+  font: 14px 'JetBrains Mono', monospace;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+#dbg button {
+  background: var(--poro-focus);
+  color: var(--poro-ink);
+  border: none;
+  padding: 8px 16px;
+  font-weight: 800;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#dbg button.active {
+  background: #E2E8F0;
+  color: #0F172A;
+}
+#dbg input[type="range"] {
+  width: 340px;
+  cursor: pointer;
+}
+#dbg span {
+  min-width: 65px;
+  font-variant-numeric: tabular-nums;
+}
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div id="blueprint-grid"></div>
+  <div id="safezone-guide"></div>
+
+  <!-- Header Brand -->
+  <div id="header-brand">
+    <div class="brand-pill"></div>
+    <div class="brand-title">PORO REVERSE ENGINEERING · TELEMETRI IOT</div>
+  </div>
+
+  <!-- World Camera Rig -->
+  <div id="world">
+    
+    <!-- ==============================================================
+         2.5D ISOMETRIC FULL-BLEED CITY HIGHWAY & MOVING STREET
+         ============================================================== -->
+    <svg viewBox="0 0 1080 1920">
+      <defs>
+        <linearGradient id="metalShaft" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#141D3F" />
+          <stop offset="50%" stop-color="#E2E8F0" />
+          <stop offset="100%" stop-color="#0F172A" />
+        </linearGradient>
+
+        <linearGradient id="busBodyGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#3B5284" />
+          <stop offset="50%" stop-color="#243452" />
+          <stop offset="100%" stop-color="#141D3F" />
+        </linearGradient>
+
+        <linearGradient id="windshieldGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#93C5FD" stop-opacity="0.95" />
+          <stop offset="40%" stop-color="#60A5FA" stop-opacity="0.85" />
+          <stop offset="100%" stop-color="#1E3A8A" stop-opacity="0.9" />
+        </linearGradient>
+
+        <linearGradient id="satelliteBeamGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(56, 189, 248, 0.75)" />
+          <stop offset="60%" stop-color="rgba(56, 189, 248, 0.25)" />
+          <stop offset="100%" stop-color="rgba(56, 189, 248, 0.0)" />
+        </linearGradient>
+
+        <filter id="pDrop" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="6" dy="12" stdDeviation="8" flood-color="#141D3F" flood-opacity="0.25" />
+        </filter>
+      </defs>
+
+      <!-- 1. PARALLAX CITY SILHOUETTE (BACKGROUND SPEED 0.2x) -->
+      <g id="city-bg" transform="translate(540, 820)" opacity="0.35">
+        <polygon points="-600,-80 -480,-240 -380,-240 -380,-80 -260,-80 -260,-320 -140,-320 -140,-80 40,-80 40,-200 160,-200 160,-80 320,-80 320,-280 440,-280 440,-80 600,-80 600,0 -600,0" fill="#CBD5E1" />
+      </g>
+
+      <!-- 2. FULL-BLEED STREAMING HIGHWAY ROAD (CONTINUOUS ACTION LOOP) -->
+      <g id="highway-road" transform="translate(540, 1080)">
+        <!-- Giant Road Surface spanning screen diagonally -->
+        <polygon points="-750,-320 750,260 750,560 -750,-20" fill="var(--poro-ground)" stroke="var(--poro-ink)" stroke-width="3.5" />
+        <polygon points="-750,-20 750,560 750,620 -750,40" fill="#CBD5E1" stroke="var(--poro-ink)" stroke-width="3" />
+        
+        <!-- Curb Barriers -->
+        <line x1="-750" y1="-320" x2="750" y2="260" stroke="#94A3B8" stroke-width="12" />
+        <line x1="-750" y1="-20" x2="750" y2="560" stroke="#94A3B8" stroke-width="12" />
+
+        <!-- Continuous Parallax Road Markings Group (Translated by GSAP) -->
+        <g id="road-markings" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round">
+          <!-- Multi-strip lines that loop -->
+          <line x1="-800" y1="-240" x2="-680" y2="-194" />
+          <line x1="-600" y1="-162" x2="-480" y2="-116" />
+          <line x1="-400" y1="-85" x2="-280" y2="-39" />
+          <line x1="-200" y1="-8" x2="-80" y2="38" />
+          <line x1="0" y1="69" x2="120" y2="115" />
+          <line x1="200" y1="146" x2="320" y2="192" />
+          <line x1="400" y1="223" x2="520" y2="269" />
+          <line x1="600" y1="300" x2="720" y2="346" />
+          <line x1="800" y1="377" x2="920" y2="423" />
+        </g>
+      </g>
+
+      <!-- 3. PASSING STREETLAMPS (PARALLAX ENVIRONMENT) -->
+      <g id="streetlamps-layer">
+        <!-- Lamp 1 (Passes by) -->
+        <g id="lamp-1" transform="translate(180, 880)">
+          <path d="M 0,160 L 0,-120 C 0,-160 40,-160 60,-140" stroke="var(--poro-ink)" stroke-width="6" fill="none" />
+          <polygon points="50,-145 70,-135 60,-120" fill="var(--poro-focus)" stroke="var(--poro-ink)" stroke-width="2" />
+          <ellipse cx="60" cy="-120" rx="14" ry="8" fill="#FDE047" opacity="0.8" />
+        </g>
+        <!-- Lamp 2 -->
+        <g id="lamp-2" transform="translate(940, 1260)">
+          <path d="M 0,160 L 0,-120 C 0,-160 -40,-160 -60,-140" stroke="var(--poro-ink)" stroke-width="6" fill="none" />
+          <polygon points="-50,-145 -70,-135 -60,-120" fill="var(--poro-focus)" stroke="var(--poro-ink)" stroke-width="2" />
+          <ellipse cx="-60" cy="-120" rx="14" ry="8" fill="#FDE047" opacity="0.8" />
+        </g>
+      </g>
+
+      <!-- 4. HIGH ORBIT SATELLITES (COSMIC SCALE) -->
+      <g id="satellites-group" transform="translate(540, 280)" opacity="0">
+        <polygon id="sat-beam-1" points="-460,-40 460,-40 10,740 -10,740" fill="url(#satelliteBeamGrad)" opacity="0" />
+        
+        <!-- Satellite 1 (Flanking Left) -->
+        <g id="sat-left" transform="translate(-460, -40)">
+          <rect x="-85" y="-14" width="64" height="28" rx="4" fill="#0284C7" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <rect x="21" y="-14" width="64" height="28" rx="4" fill="#0284C7" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <line x1="-85" y1="0" x2="85" y2="0" stroke="#FFFFFF" stroke-width="2" />
+          <polygon points="-22,-20 0,-32 22,-20 0,-8" fill="#F8FAFC" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <polygon points="-22,-20 0,-8 0,22 -22,10" fill="#CBD5E1" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <polygon points="0,-8 22,-20 22,10 0,22" fill="#94A3B8" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <circle cx="0" cy="30" r="14" fill="#F59E0B" stroke="var(--poro-ink)" stroke-width="2" />
+        </g>
+
+        <!-- Satellite 2 (Flanking Right) -->
+        <g id="sat-right" transform="translate(460, -40)">
+          <rect x="-85" y="-14" width="64" height="28" rx="4" fill="#0284C7" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <rect x="21" y="-14" width="64" height="28" rx="4" fill="#0284C7" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <line x1="-85" y1="0" x2="85" y2="0" stroke="#FFFFFF" stroke-width="2" />
+          <polygon points="-22,-20 0,-32 22,-20 0,-8" fill="#F8FAFC" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <polygon points="-22,-20 0,-8 0,22 -22,10" fill="#CBD5E1" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <polygon points="0,-8 22,-20 22,10 0,22" fill="#94A3B8" stroke="var(--poro-ink)" stroke-width="2.5" />
+          <circle cx="0" cy="30" r="14" fill="#F59E0B" stroke="var(--poro-ink)" stroke-width="2" />
+        </g>
+      </g>
+
+      <!-- 5. CELLULAR BTS TOWER (GROUND RIGHT) -->
+      <g id="bts-tower" transform="translate(930, 860)" opacity="0">
+        <polygon points="-24,240 24,240 8,-80 -8,-80" fill="#E2E8F0" stroke="var(--poro-ink)" stroke-width="3" />
+        <line x1="-20" y1="160" x2="20" y2="120" stroke="var(--poro-ink)" stroke-width="2.5" />
+        <line x1="20" y1="160" x2="-20" y2="120" stroke="var(--poro-ink)" stroke-width="2.5" />
+        <line x1="-14" y1="80" x2="14" y2="40" stroke="var(--poro-ink)" stroke-width="2.5" />
+        <line x1="14" y1="80" x2="-14" y2="40" stroke="var(--poro-ink)" stroke-width="2.5" />
+        <rect x="-28" y="-95" width="12" height="38" fill="#F8FAFC" stroke="var(--poro-ink)" stroke-width="2" />
+        <rect x="16" y="-95" width="12" height="38" fill="#F8FAFC" stroke="var(--poro-ink)" stroke-width="2" />
+        <g id="gsm-pulses">
+          <circle cx="0" cy="-80" r="30" fill="none" stroke="var(--poro-heat)" stroke-width="4" stroke-dasharray="10 8" />
+          <circle cx="0" cy="-80" r="65" fill="none" stroke="var(--poro-heat)" stroke-width="4" stroke-dasharray="12 10" />
+        </g>
+      </g>
+
+      <!-- ==============================================================
+           6. HERO VEHICLE: AUTHENTIC CITY BUS (5 SIGNATURE ANATOMY FEATURES)
+           Rasio 4.8 : 1 : 1.28 | Panjang 12m Low-Deck
+           ============================================================== -->
+      <g id="bus-hero-container" transform="translate(540, 1020)">
+        
+        <!-- Micro Suspension Vibration Sub-Group -->
+        <g id="bus-chassis-vibrate" filter="url(#pDrop)">
+          
+          <!-- WHEEL WELLS & REALISTIC WHEELS -->
+          <g id="bus-wheels">
+            <!-- Rear Wheels (Fender Arch) -->
+            <path d="M -300,120 C -300,60 -200,60 -200,120 Z" fill="#0F172A" />
+            <ellipse cx="-250" cy="115" rx="42" ry="58" fill="#0F172A" stroke="var(--poro-ink)" stroke-width="3" />
+            <ellipse cx="-250" cy="115" rx="24" ry="34" fill="#64748B" stroke="#94A3B8" stroke-width="3" />
+            <circle cx="-250" cy="115" r="8" fill="#CBD5E1" />
+            
+            <!-- Front Wheels with Steering Angle (Fender Arch) -->
+            <path d="M 120,240 C 120,180 220,180 220,240 Z" fill="#0F172A" />
+            <g transform="translate(170, 235) rotate(-6)">
+              <ellipse cx="0" cy="0" rx="42" ry="58" fill="#0F172A" stroke="var(--poro-ink)" stroke-width="3" />
+              <ellipse cx="0" cy="0" rx="24" ry="34" fill="#64748B" stroke="#94A3B8" stroke-width="3" />
+              <circle cx="0" cy="0" r="8" fill="#CBD5E1" />
+            </g>
+          </g>
+
+          <!-- MAIN BODY: CITY BUS LOW-DECK (FACETED METALLIC SHADING) -->
+          <g id="bus-body-group">
+            <!-- Under-chassis Baseplate -->
+            <polygon points="-420,-10 240,210 240,250 -420,30" fill="#0F172A" stroke="var(--poro-ink)" stroke-width="3.5" />
+            
+            <!-- Side Body Wall (Deep Navy Gradient) -->
+            <polygon points="-420,-170 210,30 210,210 -420,0" fill="url(#busBodyGrad)" stroke="var(--poro-ink)" stroke-width="3.5" />
+            
+            <!-- Passenger Double Doors (Fold Crease) -->
+            <rect x="-140" y="-30" width="70" height="150" fill="#1E293B" stroke="var(--poro-ink)" stroke-width="2.5" />
+            <line x1="-105" y1="-30" x2="-105" y2="120" stroke="var(--poro-focus)" stroke-width="3" />
+            <!-- Door Windows -->
+            <rect x="-132" y="-20" width="24" height="60" rx="4" fill="#93C5FD" opacity="0.8" />
+            <rect x="-98" y="-7" width="24" height="60" rx="4" fill="#93C5FD" opacity="0.8" />
+
+            <!-- Front Nose Fascia (Right Facing Shaded Bumper) -->
+            <polygon points="210,30 340,-20 340,140 210,210" fill="#141D3F" stroke="var(--poro-ink)" stroke-width="3.5" />
+            
+            <!-- Aerodynamic Curved Windshield (20° Inclination) -->
+            <polygon points="180,-140 320,-185 340,-20 210,30" fill="url(#windshieldGrad)" stroke="var(--poro-ink)" stroke-width="3" />
+            <!-- Windshield Wiper -->
+            <line x1="240,20" x2="280,-70" stroke="var(--poro-ink)" stroke-width="4" stroke-linecap="round" />
+
+            <!-- Side Passenger Windows Panoramic Band (Pillars Frame) -->
+            <polygon points="-400,-140 180,50 180,5 -400,-95" fill="#1E3A8A" opacity="0.9" stroke="var(--poro-ink)" stroke-width="2.5" />
+            <!-- Vertical Window Dividers -->
+            <line x1="-310" y1="-125" x2="-310" y2="-80" stroke="var(--poro-ink)" stroke-width="4" />
+            <line x1="-220" y1="-95" x2="-220" y2="-50" stroke="var(--poro-ink)" stroke-width="4" />
+            <line x1="-40" y1="-40" x2="-40" y2="5" stroke="var(--poro-ink)" stroke-width="4" />
+            <line x1="50" y1="-10" x2="50" y2="35" stroke="var(--poro-ink)" stroke-width="4" />
+            <line x1="140" y1="20" x2="140" y2="65" stroke="var(--poro-ink)" stroke-width="4" />
+
+            <!-- Roof Top Platform (Top Highlight Surface) -->
+            <polygon points="-420,-170 -300,-220 320,-185 180,-140" fill="#F1F5F9" stroke="var(--poro-ink)" stroke-width="3.5" />
+
+            <!-- Front Headlights LED Projectors & Radiator Grille -->
+            <g transform="translate(280, 100)">
+              <rect x="0" y="0" width="30" height="14" rx="3" fill="#FFFFFF" stroke="var(--poro-focus)" stroke-width="2" />
+              <circle cx="10" cy="7" r="4" fill="#00E5FF" />
+              <circle cx="22" cy="7" r="4" fill="#00E5FF" />
+            </g>
+            <!-- Radiator Grille Slits -->
+            <g stroke="#334155" stroke-width="3" stroke-linecap="round">
+              <line x1="240" y1="150" x2="310" y2="120" />
+              <line x1="240" y1="160" x2="310" y2="130" />
+            </g>
+
+            <!-- Dual Elephant-Ear Side Mirrors (Signature Bus Visual) -->
+            <g id="side-mirrors">
+              <!-- Right Mirror (Front Right) -->
+              <path d="M 330,-40 C 370,-60 380,-30 380,10 L 380,40" stroke="var(--poro-ink)" stroke-width="5" fill="none" />
+              <rect x="368" y="0" width="20" height="45" rx="5" fill="#141D3F" stroke="var(--poro-focus)" stroke-width="2" />
+              <!-- Left Mirror (Driver Side) -->
+              <path d="M 190,-120 C 170,-150 150,-130 150,-100 L 150,-80" stroke="var(--poro-ink)" stroke-width="5" fill="none" />
+              <rect x="140" y="-105" width="18" height="40" rx="4" fill="#141D3F" stroke="var(--poro-focus)" stroke-width="2" />
+            </g>
+
+            <!-- Signature Lime Livery Stripe -->
+            <line x1="-410" y1="-5" x2="200" y2="175" stroke="var(--poro-focus)" stroke-width="12" stroke-linecap="round" />
+            <line x1="-410" y1="16" x2="200" y2="196" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+          </g>
+
+          <!-- ROOFTOP HVAC A/C POD & GNSS ANTENNA (ANATOMY FEATURE #2) -->
+          <g id="roof-hvac-assembly" transform="translate(-100, -190)">
+            <!-- Aerodynamic AC Unit Casing -->
+            <polygon points="-120,10 0,60 180,-10 60,-60" fill="#E2E8F0" stroke="var(--poro-ink)" stroke-width="3" />
+            <polygon points="-120,10 0,60 0,85 -120,35" fill="#94A3B8" stroke="var(--poro-ink)" stroke-width="3" />
+            <polygon points="0,60 180,-10 180,15 0,85" fill="#64748B" stroke="var(--poro-ink)" stroke-width="3" />
+            <!-- Vents Grilles -->
+            <line x1="-80" y1="20" x2="-20" y2="45" stroke="#334155" stroke-width="3" />
+            <line x1="-60" y1="10" x2="0" y2="35" stroke="#334155" stroke-width="3" />
+
+            <!-- GNSS PATCH ANTENNA ON ROOF -->
+            <g id="roof-antenna" transform="translate(100, 10)">
+              <ellipse cx="0" cy="0" rx="34" ry="18" fill="#FFFFFF" stroke="var(--poro-ink)" stroke-width="2.5" />
+              <ellipse cx="0" cy="-6" rx="26" ry="14" fill="var(--poro-focus)" stroke="var(--poro-ink)" stroke-width="2" />
+              <!-- Status LED -->
+              <circle id="antenna-led" cx="0" cy="-6" r="6" fill="#00E5FF" />
+              <circle cx="0" cy="-6" r="18" fill="none" stroke="var(--poro-cool)" stroke-width="2" opacity="0.6" />
+            </g>
+          </g>
+
+          <!-- DASHBOARD CUTAWAY LAYER (SECRET TELEMETRY IOT MODEM & SIM) -->
+          <g id="dashboard-cutaway" transform="translate(160, 40)" opacity="0">
+            <rect x="-85" y="-55" width="170" height="120" rx="10" fill="#0B132B" stroke="var(--poro-focus)" stroke-width="3.5" />
+            <rect x="-75" y="-45" width="150" height="100" rx="6" fill="#065F46" stroke="#10B981" stroke-width="2" />
+            
+            <rect x="-60" y="-30" width="44" height="44" rx="4" fill="#1F2937" stroke="#4B5563" stroke-width="2" />
+            <text x="-38" y="-4" fill="#E5E7EB" font-family="JetBrains Mono" font-size="11" font-weight="800" text-anchor="middle">GNSS</text>
+            
+            <!-- SIM Socket -->
+            <g id="sim-card-slot" transform="translate(25, -8)">
+              <rect x="-26" y="-20" width="52" height="40" rx="4" fill="#D97706" stroke="var(--poro-ink)" stroke-width="2" />
+              <polygon points="15,-20 26,-9 26,20 -26,20 -26,-20" fill="var(--poro-focus)" stroke="var(--poro-ink)" stroke-width="2" />
+              <rect x="-12" y="-10" width="24" height="18" rx="2" fill="#FDE047" stroke="#92400E" stroke-width="1.5" />
+              <text x="0" y="2" fill="#78350F" font-family="JetBrains Mono" font-size="9" font-weight="800" text-anchor="middle">SIM M2M</text>
+            </g>
+            <text x="0" y="46" fill="var(--poro-focus)" font-family="JetBrains Mono" font-size="12" font-weight="800" text-anchor="middle">MODEM IOT 4G</text>
+          </g>
+
+          <!-- Dynamic Tracking Leader Line -->
+          <path id="leader-line" d="M 0,-180 L 80,-280 L 260,-280" stroke="var(--poro-ink)" stroke-width="3.5" fill="none" stroke-dasharray="350" stroke-dashoffset="350" />
+        </g>
+      </g> <!-- /bus-hero-container -->
+
+      <!-- 7. SMARTPHONE MOCKUP AT HALTE (SCENE 1) -->
+      <g transform="translate(540, 960)">
+        <g id="phone-mockup">
+          <rect x="-130" y="-240" width="260" height="480" rx="34" fill="#141D3F" stroke="var(--poro-ink)" stroke-width="4" filter="url(#pDrop)" />
+          <rect x="-118" y="-228" width="236" height="456" rx="26" fill="#F8FAFC" />
+          
+          <!-- Google Maps Screen -->
+          <rect x="-114" y="-224" width="228" height="448" rx="22" fill="#E2E8F0" />
+          <path d="M -90,-120 Q 0,-60 80,-180" stroke="#FFFFFF" stroke-width="20" fill="none" />
+          <path d="M -90,-120 Q 0,-60 80,-180" stroke="#CBD5E1" stroke-width="8" fill="none" />
+          <path d="M -60,180 L 20,-20 L 70,-40" stroke="#FFFFFF" stroke-width="24" fill="none" />
+          <path d="M -60,180 L 20,-20 L 70,-40" stroke="#FBBF24" stroke-width="12" fill="none" />
+
+          <!-- Bus Pin Moving -->
+          <g id="map-bus-pin" transform="translate(20, -20)">
+            <circle cx="0" cy="0" r="18" fill="var(--poro-focus)" stroke="var(--poro-ink)" stroke-width="3" />
+            <polygon points="-8,-6 8,-6 0,-14" fill="var(--poro-ink)" />
+            <rect x="-8" y="-4" width="16" height="12" rx="2" fill="var(--poro-ink)" />
+          </g>
+
+          <!-- No Wi-Fi Icon Badge -->
+          <g id="no-wifi-badge" transform="translate(0, 160)">
+            <rect x="-80" y="-20" width="160" height="40" rx="20" fill="rgba(239, 68, 68, 0.95)" stroke="var(--poro-ink)" stroke-width="2" />
+            <text x="0" y="6" fill="#FFFFFF" font-family="JetBrains Mono" font-size="14" font-weight="800" text-anchor="middle">TANPA WI-FI BUS</text>
+          </g>
+        </g>
+      </g>
+    </svg>
+
+    <!-- CALLOUT CARD (ANCHORED IN MID ZONE) -->
+    <div class="callout-card" id="card-callout" style="left: 480px; top: 620px;">
+      <div class="title">ANTENA GNSS ATAP</div>
+      <div class="desc">Menerima Sinyal 4 Satelit Pasif</div>
+    </div>
+
+  </div> <!-- /world -->
+
+  <!-- ==============================================================
+       FIXED HUD OVERLAY LAYER (100% IMMUNE TO CAMERA ZOOM)
+       Zona Atas   : Y 200 - 460  (Headline & Sensory Badge)
+       Zona Bawah  : Y 1220 - 1400 (Subtitle OR Metric Card)
+       ============================================================== -->
+  <div id="hud-layer">
+    <!-- Narrative Headlines (Top Zone: Y 200 - 460) -->
+    <div class="safe-zone top-narrative">
+      <div class="kicker-tag" id="kicker-badge">[ 01 // SISTEM FLEET TELEMETRY ]</div>
+      <h1 class="headline-text" id="scene-title">Bus Nggak Ada Wi-Fi, Kok Posisinya Muncul di Peta?</h1>
+      <p class="subheadline-text" id="scene-desc">Buka Google Maps di halte, bus kelihatan jalan. Tapi pas naik, nggak ada internet sama sekali!</p>
+      
+      <!-- Single Active Sensory Badge (Mutually Exclusive) -->
+      <div class="sensory-badge-container">
+        <div class="sensory-badge badge-lime" id="badge-sensory-1">[ 0 KONEKSI WI-FI ]</div>
+        <div class="sensory-badge badge-cool" id="badge-sensory-2">[ FREKUENSI L1 1575 MHZ ]</div>
+        <div class="sensory-badge badge-heat" id="badge-sensory-3">[ KARTU SIM M2M IOT ]</div>
+      </div>
+    </div>
+
+    <!-- 3-BEAT METRIC SCALE CARD (BOTTOM ZONE: Y 1200 - 1400) -->
+    <div class="metric-card" id="card-metric">
+      <div class="metric-info">
+        <div class="lbl">LATENSI TRANSMISI TELEMETRI</div>
+        <div class="claim">Interval Kirim Koordinat GSM</div>
+      </div>
+      <div class="metric-val" id="metric-digit">&le; <span>5.0</span>s</div>
+    </div>
+
+    <!-- SUBTITLE KARAOKE RAIL (BOTTOM ZONE: Y 1240 - 1400) -->
+    <div class="safe-zone subtitles-zone" id="subtitles-wrapper">
+      <div class="subtitles-box" id="karaoke-text">
+        "Lagi nunggu di halte, kamu buka aplikasi di handphone dan posisi busnya kelihatan meluncur akurat di peta."
+      </div>
+    </div>
+  </div> <!-- /hud-layer -->
+
+</div> <!-- /stage -->
+
+<!-- Audio Master Element -->
+<audio id="vo" src="../assets/audio/bus/master_vo.mp3" preload="auto"></audio>
+
+<!-- Interactive Developer Scrubber Panel (?debug=1) -->
+<div id="dbg">
+  <button id="dPlay">Play</button>
+  <input id="dScrub" type="range" min="0" max="1000" value="0">
+  <span id="dClock">0.00s</span>
+  <button id="dSafe">Safe Zone: Off</button>
+  <button id="dAudio">Audio: Mute</button>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+/* ==============================================================
+   PRODUCTION CONFIGURATION
+   ============================================================== */
+const W = 1080;
+const H = 1920;
+const DUR = 65.66; // Exact duration from master_vo.mp3
+
+const $ = s => document.querySelector(s);
+
+function fitStage() {
+  const scale = Math.min(window.innerWidth / W, window.innerHeight / H);
+  $('#stage').style.transform = `translate(-50%, -50%) scale(${scale})`;
+}
+window.addEventListener('resize', fitStage);
+fitStage();
+
+/* ==============================================================
+   PROCEDURAL FOLEY SYNTHESIZER
+   ============================================================== */
+let audioCtx = null;
+let soundEnabled = false;
+
+function initAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  soundEnabled = true;
+}
+
+function playFoley(type, volume = 0.5) {
+  if (!soundEnabled || !audioCtx) return;
+  const now = audioCtx.currentTime;
+
+  if (type === 'whoosh') {
+    const bufferSize = audioCtx.sampleRate * 0.3;
+    const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+    const noise = audioCtx.createBufferSource();
+    noise.buffer = buffer;
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(300, now);
+    filter.frequency.exponentialRampToValueAtTime(1400, now + 0.15);
+    filter.frequency.exponentialRampToValueAtTime(250, now + 0.3);
+    const gain = audioCtx.createGain();
+    gain.gain.setValueAtTime(0.01, now);
+    gain.gain.linearRampToValueAtTime(volume * 0.7, now + 0.12);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(audioCtx.destination);
+    noise.start(now);
+    noise.stop(now + 0.3);
+  } else if (type === 'radar_ping') {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(2200, now);
+    osc.frequency.exponentialRampToValueAtTime(880, now + 0.25);
+    gain.gain.setValueAtTime(volume * 0.6, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + 0.26);
+  } else if (type === 'sim_snap') {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(1800, now);
+    osc.frequency.exponentialRampToValueAtTime(180, now + 0.05);
+    gain.gain.setValueAtTime(volume * 0.8, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + 0.06);
+  } else if (type === 'sub_drop') {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(90, now);
+    osc.frequency.exponentialRampToValueAtTime(35, now + 0.4);
+    gain.gain.setValueAtTime(volume * 0.9, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + 0.41);
+  }
+}
+
+/* ==============================================================
+   STATE RESET FUNCTION (FOR ACCURATE INFINITY LOOP RESET)
+   ============================================================== */
+function resetVisualState() {
+  $('#kicker-badge').textContent = "[ 01 // SISTEM FLEET TELEMETRY ]";
+  $('#scene-title').textContent = "Bus Nggak Ada Wi-Fi, Kok Posisinya Muncul di Peta?";
+  $('#scene-desc').textContent = "Buka Google Maps di halte, bus kelihatan jalan. Tapi pas naik, nggak ada internet sama sekali!";
+  $('#karaoke-text').innerHTML = `"Lagi nunggu di halte, kamu buka aplikasi di handphone dan posisi busnya kelihatan meluncur akurat di peta."`;
+  
+  $('#badge-sensory-1').style.opacity = 0;
+  $('#badge-sensory-2').style.opacity = 0;
+  $('#badge-sensory-3').style.opacity = 0;
+  $('#card-callout').style.opacity = 0;
+  $('#card-metric').style.opacity = 0;
+  $('#dashboard-cutaway').style.opacity = 0;
+  $('#bts-tower').style.opacity = 0;
+  $('#sat-beam-1').style.opacity = 0;
+  $('#satellites-group').style.opacity = 0;
+  $('#subtitles-wrapper').style.opacity = 1;
+  gsap.set('#phone-mockup', { y: 0, opacity: 1 });
+  gsap.set('#world', { scale: 1, x: 0, y: 0 });
+}
+
+/* ==============================================================
+   MASTER GSAP TIMELINE (CONTINUOUS ACTION & SPEED RAMPING)
+   ============================================================== */
+const tl = gsap.timeline({
+  paused: true,
+  repeat: -1,
+  onRepeat: () => {
+    resetVisualState();
+    if (vo) vo.currentTime = 0;
+  }
+});
+
+/* Continuous Action: Street Parallax Road Markings (Never stops) */
+gsap.to('#road-markings', {
+  x: -600,
+  y: -230,
+  duration: 1.4,
+  ease: 'none',
+  repeat: -1
+});
+
+/* Passing Streetlamps Parallax */
+gsap.to('#lamp-1', {
+  x: -600,
+  y: -230,
+  duration: 2.8,
+  ease: 'none',
+  repeat: -1
+});
+gsap.to('#lamp-2', {
+  x: -600,
+  y: -230,
+  duration: 3.2,
+  ease: 'none',
+  repeat: -1
+});
+
+/* Vehicle Micro-Suspension Vibration (10Hz Driving Weight) */
+gsap.to('#bus-chassis-vibrate', {
+  y: 4,
+  duration: 0.12,
+  repeat: -1,
+  yoyo: true,
+  ease: 'sine.inOut'
+});
+
+/* --------------------------------------------------------------
+   SCENE 1: HOOK & EVERYDAY HALTE EXPERIENCE (0.0s - 13.37s)
+   -------------------------------------------------------------- */
+tl.call(() => resetVisualState(), null, 0);
+
+tl.fromTo('#world', 
+  { scale: 0.92, x: 0, y: 140 }, 
+  { scale: 1.0, x: 0, y: 0, duration: 4.0, ease: 'power2.out' }, 0);
+
+tl.fromTo('#kicker-badge', 
+  { opacity: 0, y: -20 }, 
+  { opacity: 1, y: 0, duration: 0.6, ease: 'back.out(2)' }, 0.5);
+
+tl.fromTo('#scene-title', 
+  { opacity: 0, y: 30 }, 
+  { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.8);
+
+tl.call(() => playFoley('whoosh', 0.6), null, 1.2);
+
+// Live moving pin on passenger phone
+tl.to('#map-bus-pin', {
+  x: 50,
+  y: -70,
+  duration: 6.0,
+  ease: 'sine.inOut'
+}, 1.5);
+
+// Sensory Badge 1: 0 KONEKSI WI-FI (Isolated)
+tl.to('#badge-sensory-1', {
+  opacity: 1,
+  scale: 1.0,
+  duration: 0.45,
+  ease: 'back.out(2.2)'
+}, 6.2);
+
+tl.call(() => {
+  $('#karaoke-text').innerHTML = `"Tapi pas kamu naik, busnya sama sekali <span class="hl">nggak punya Wi-Fi</span> untuk penumpang!"`;
+}, null, 6.2);
+
+// Phone mockup drops down, revealing full bus on highway
+tl.to('#phone-mockup', { y: 1100, opacity: 0, duration: 1.2, ease: 'power3.in' }, 7.5);
+
+/* --------------------------------------------------------------
+   SCENE 2: MACRO ZOOM TO ROOF GNSS & SATELLITES (13.37s - 33.15s)
+   -------------------------------------------------------------- */
+tl.to('#badge-sensory-1', { opacity: 0, scale: 0.7, duration: 0.3 }, 13.0);
+
+// Macro Push-In Zoom (55% Frame Fill on Roof Antenna & HVAC)
+tl.to('#world', {
+  scale: 1.75,
+  x: -40,
+  y: 320,
+  duration: 2.0,
+  ease: 'power3.inOut'
+}, 13.5);
+
+tl.call(() => {
+  $('#kicker-badge').textContent = "[ 02 // PENERIMA PASIF GNSS ]";
+  $('#scene-title').textContent = "Antena GNSS Atap & 4 Satelit Orbit";
+  $('#scene-desc').textContent = "Gelombang radio menempuh 20.200 kilometer. Chip GPS mengunci titik koordinat secara pasif tanpa internet.";
+  $('#karaoke-text').innerHTML = `"Di balik bodi baja ini, terpasang antena penerima <span class="hl">sinyal satelit</span>."`;
+}, null, 14.0);
+
+tl.to('#satellites-group', { opacity: 1, duration: 1.0 }, 14.2);
+tl.call(() => playFoley('radar_ping', 0.8), null, 15.5);
+
+// Satellite Beams appear
+tl.to('#sat-beam-1', { opacity: 0.85, duration: 1.0, ease: 'power2.out' }, 16.0);
+// Sensory Badge 2: FREKUENSI L1 (Replaces Badge 1)
+tl.to('#badge-sensory-2', { opacity: 1, scale: 1.0, duration: 0.4, ease: 'back.out(2)' }, 17.2);
+
+// Leader line draws to antenna
+tl.to('#leader-line', { strokeDashoffset: 0, duration: 0.8, ease: 'power2.out' }, 18.0);
+tl.to('#card-callout', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 18.5);
+
+tl.call(() => {
+  $('#karaoke-text').innerHTML = `"Chip GPS di bus mengunci koordinat <span class="hl">secara pasif</span>, tanpa butuh internet sama sekali!"`;
+}, null, 24.0);
+
+/* --------------------------------------------------------------
+   SCENE 3: DASHBOARD CUTAWAY & IOT M2M SIM (33.15s - 49.69s)
+   -------------------------------------------------------------- */
+tl.to('#card-callout', { opacity: 0, duration: 0.3 }, 32.5);
+tl.to('#satellites-group', { opacity: 0, duration: 0.8 }, 32.5);
+tl.to('#sat-beam-1', { opacity: 0, duration: 0.6 }, 32.8);
+tl.to('#badge-sensory-2', { opacity: 0, scale: 0.7, duration: 0.3 }, 33.2);
+
+// Orbit Slice Cutaway: Reframes to front dashboard
+tl.to('#world', {
+  scale: 1.85,
+  x: -280,
+  y: -20,
+  duration: 2.0,
+  ease: 'power3.inOut'
+}, 33.4);
+
+tl.call(() => {
+  $('#kicker-badge').textContent = "[ 03 // TELEMETRI SELULER ]";
+  $('#scene-title').textContent = "Modem Telemetri 4G & Kartu SIM M2M";
+  $('#scene-desc').textContent = "Rahasia sesungguhnya: Kartu SIM seluler industri di dashboard mengirim paket koordinat ke server setiap 5 detik.";
+  $('#karaoke-text').innerHTML = `"Di dalam dashboard, modul GPS tersambung ke modem telemetri khusus yang dipasangi <span class="hl">kartu SIM seluler!</span>"`;
+}, null, 34.0);
+
+// Cutaway opens
+tl.to('#dashboard-cutaway', { opacity: 1, duration: 0.8 }, 34.5);
+
+// SIM Card snaps in
+tl.fromTo('#sim-card-slot', 
+  { y: -30, opacity: 0 }, 
+  { y: -8, opacity: 1, duration: 0.6, ease: 'back.out(2.5)' }, 36.0);
+
+tl.call(() => playFoley('sim_snap', 0.9), null, 36.4);
+// Sensory Badge 3: KARTU SIM M2M (Replaces Badge 2)
+tl.to('#badge-sensory-3', { opacity: 1, scale: 1.0, duration: 0.4, ease: 'back.out(2)' }, 37.0);
+
+// Cellular BTS Tower pulses on right
+tl.to('#bts-tower', { opacity: 1, duration: 1.0 }, 38.5);
+tl.to('#gsm-pulses circle', {
+  scale: 1.8,
+  opacity: 0,
+  transformOrigin: '0px -80px',
+  duration: 1.2,
+  repeat: 6,
+  ease: 'power1.out'
+}, 39.0);
+
+tl.call(() => {
+  $('#karaoke-text').innerHTML = `"Modem inilah yang mengirimkan data titik koordinat lewat <span class="hl">menara BTS</span> ke server peta."`;
+}, null, 42.0);
+
+/* --------------------------------------------------------------
+   SCENE 4: 3-BEAT METRIC PUNCH & PAYOFF (49.69s - 61.5s)
+   -------------------------------------------------------------- */
+tl.to('#badge-sensory-3', { opacity: 0, scale: 0.7, duration: 0.3 }, 49.5);
+
+// Reframe to wide telemetry verification view
+tl.to('#world', {
+  scale: 1.15,
+  x: 0,
+  y: 60,
+  duration: 1.8,
+  ease: 'power3.inOut'
+}, 49.8);
+
+tl.call(() => {
+  $('#kicker-badge').textContent = "[ 04 // VALIDASI METRIK ]";
+  $('#scene-title').textContent = "Latensi ≤ 5 Detik, Akurasi 3 Meter";
+  $('#scene-desc').textContent = "Yang tidak punya internet itu cuma penumpang. Armadanya selalu online ke satelit dan menara BTS!";
+}, null, 50.2);
+
+// STRICT MUTUAL EXCLUSIVITY: Hide subtitles to prevent overlap with Metric Card
+tl.to('#subtitles-wrapper', { opacity: 0, duration: 0.3 }, 50.8);
+
+// 3-Beat Metric Scale Punch
+// Beat 1: Slide in
+tl.to('#card-metric', { opacity: 1, y: 0, duration: 0.6, ease: 'back.out(1.6)' }, 51.5);
+// Foley Trigger: Sub-drop 80Hz
+tl.call(() => playFoley('sub_drop', 0.85), null, 51.8);
+// Beat 2: Digit scale pop 1.35x
+tl.fromTo('#metric-digit', 
+  { scale: 1.0 }, 
+  { scale: 1.35, duration: 0.3, yoyo: true, repeat: 1, ease: 'power2.out' }, 51.8);
+// Beat 3: Border confirmation glow
+tl.to('#card-metric', { borderColor: 'var(--poro-focus)', duration: 0.25, yoyo: true, repeat: 1 }, 52.3);
+
+/* --------------------------------------------------------------
+   SCENE 5: SEAMLESS INFINITY LOOP BRIDGE & RECOIL (61.5s - 65.66s)
+   -------------------------------------------------------------- */
+// Metric card slides out, Subtitle returns with Loop Bridge Fragment
+tl.to('#card-metric', { opacity: 0, y: 40, duration: 0.4 }, 60.8);
+tl.to('#subtitles-wrapper', { opacity: 1, duration: 0.4 }, 61.2);
+
+tl.call(() => {
+  $('#karaoke-text').innerHTML = `"Makanya, setiap kali kamu memantau posisi armada langsung di peta handphonemu:"`;
+}, null, 61.5);
+
+tl.to(['#dashboard-cutaway', '#bts-tower'], { opacity: 0, duration: 0.8 }, 62.5);
+tl.to('#phone-mockup', { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' }, 63.0);
+
+// Recoil Snap-Out matching Frame 0000 exactly
+tl.to('#world', {
+  scale: 0.92,
+  x: 0,
+  y: 140,
+  duration: 1.4,
+  ease: 'power3.inOut'
+}, 64.0);
+
+tl.call(() => playFoley('whoosh', 0.5), null, 64.8);
+
+/* ==============================================================
+   TICKER LOOP & REAL-TIME AUDIO DRIFT CORRECTION
+   ============================================================== */
+const vo = $('#vo');
+const hasVO = vo.src && vo.src.length > 5;
+
+gsap.ticker.add(() => {
+  if (!tl.paused()) {
+    const t = tl.time();
+    updateScrubber(t);
+
+    if (hasVO && !vo.paused) {
+      if (Math.abs(vo.currentTime - t) > 0.1) {
+        vo.currentTime = t;
+      }
+    }
+  }
+});
+
+/* ==============================================================
+   INTERACTIVE DEVELOPER SCRUBBER (?debug=1)
+   ============================================================== */
+const urlParams = new URLSearchParams(window.location.search);
+const isDebug = urlParams.get('debug') === '1';
+const isClean = urlParams.get('clean') === '1';
+const seekParam = urlParams.get('seek');
+
+if (isDebug) $('#dbg').style.display = 'flex';
+
+const dPlay = $('#dPlay');
+const dScrub = $('#dScrub');
+const dClock = $('#dClock');
+const dSafe = $('#dSafe');
+const dAudio = $('#dAudio');
+
+function updateScrubber(t) {
+  dScrub.value = Math.round((t / DUR) * 1000);
+  dClock.textContent = `${t.toFixed(2).padStart(5, '0')}s`;
+}
+
+function startPlayback() {
+  initAudio();
+  tl.play();
+  if (hasVO) vo.play().catch(() => {});
+  dPlay.textContent = 'Pause';
+}
+
+function pausePlayback() {
+  tl.pause();
+  if (hasVO) vo.pause();
+  dPlay.textContent = 'Play';
+}
+
+dPlay.addEventListener('click', () => {
+  if (tl.paused()) startPlayback();
+  else pausePlayback();
+});
+
+dScrub.addEventListener('input', e => {
+  pausePlayback();
+  const targetTime = (Number(e.target.value) / 1000) * DUR;
+  tl.time(targetTime);
+  if (hasVO) vo.currentTime = targetTime;
+  updateScrubber(targetTime);
+});
+
+dSafe.addEventListener('click', () => {
+  const guide = $('#safezone-guide');
+  const active = guide.style.display === 'block';
+  guide.style.display = active ? 'none' : 'block';
+  dSafe.textContent = active ? 'Safe Zone: Off' : 'Safe Zone: On';
+  dSafe.classList.toggle('active', !active);
+});
+
+dAudio.addEventListener('click', () => {
+  initAudio();
+  soundEnabled = !soundEnabled;
+  dAudio.textContent = soundEnabled ? 'Audio: On' : 'Audio: Mute';
+  dAudio.classList.toggle('active', soundEnabled);
+});
+
+window.addEventListener('keydown', e => {
+  if (e.code === 'Space') {
+    e.preventDefault();
+    if (tl.paused()) startPlayback();
+    else pausePlayback();
+  } else if (e.code === 'KeyR') {
+    initAudio();
+    resetVisualState();
+    tl.play(0);
+    if (hasVO) vo.currentTime = 0;
+    dPlay.textContent = 'Pause';
+  }
+});
+
+window.addEventListener('click', () => {
+  if (!soundEnabled) {
+    initAudio();
+    dAudio.textContent = 'Audio: On';
+    dAudio.classList.add('active');
+  }
+}, { once: true });
+
+/* Export Contract */
+window.OPENER = {
+  W: 1080,
+  H: 1920,
+  duration: DUR,
+  ready: true,
+  seek(t) {
+    tl.pause(t, false);
+    if (hasVO) vo.currentTime = t;
+    updateScrubber(t);
+  }
+};
+
+tl.pause(0);
+resetVisualState();
+if (seekParam !== null) {
+  const seekTime = parseFloat(seekParam);
+  if (!isNaN(seekTime)) {
+    tl.time(seekTime);
+    updateScrubber(seekTime);
+  }
+} else if (!isClean) {
+  startPlayback();
+}
+</script>
+</body>
+</html>
