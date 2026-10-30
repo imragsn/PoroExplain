@@ -1,0 +1,42 @@
+000.5s | Kok motor matic nggak / pernah oper gigi? | Lampu ijo,
+001.5s | Kok motor matic nggak / pernah oper gigi? | POI...
+002.5s | Kok motor matic nggak / pernah oper gigi? | ngeeeng!
+003.5s | Kok motor matic nggak / pernah oper gigi? | ngeeeng!
+004.5s | Kok motor matic nggak / pernah oper gigi? | Nggak pemah opero
+005.5s | Kok motor matic nggak / pernah oper gigi? | Kita • / bedah CVT-nya.
+006.5s | Lampu merah: kopling / belum nyambung | Kita bedah CVT-nya.
+007.5s | Lampu merah: kopling / belum nyambung | mesin / muter 1.700 rpm,
+008.5s | Lampu merah: kopling / belum nyambung | mesin mute / 1.700 • / rpm,
+009.5s | Lampu merah: kopling / belum nyambung | mesin muter 1.700—
+010.5s | Lampu merah: kopling / belum nyambung | tapi motornya • / . diem.
+011.5s | Lampu merah: kopling / belum nyambung | Kampa / • - -gandanya • • / . belum / nyentuh mangkok.
+012.5s | Lampu merah: kopling / belum nyambung | Kampas gandanya belum / nyentuh / mangkok.
+013.5s | Digas: kampas ganda menggigit | kampasnya / - terlempar keluar...
+014.5s | Digas: kampas ganda menggigit | kampasnya terlempar / keluar...
+015.5s | Digas: kampas ganda menggigit | menggigit. / dan
+016.5s | Giginya: 6 roller di puli depan | giginya / . mana?
+017.5s | Giginya: 6 roller di puli depan | • Sini:
+018.5s | Giginya: 6 roller di puli depan | roller, / .1- / ena
+019.5s | Giginya: 6 roller di puli depan | masing-masing / 15 gram. / cuma
+020.5s | Giginya: 6 roller di puli depan | masing-masing cuma 1 / gram.
+021.5s | Makin kencang, roller / makin terlempar | Makin kencang mesin / muter,
+022.5s | Makin kencang, roller / makin terlempar | makin kuat • / roller / terlempar_
+023.5s | Makin kencang, roller / makin terlempar | Di • / putaran tinggi,
+024.5s | Makin kencang, roller / makin terlempar | tarikannya / Kayak / beban puluhan kilo!
+025.5s | Makin kencang, roller / makin terlempar | tarikannya kayak / kilo! / beban • / puluhan
+026.5s | Belt / naik di depan, / di belakang / turun | Roller ngejepit / puli depan,
+027.5s | Belt / naik di depan, / di belakang / turun | Roller ngejepit puli • : • / depan,
+028.5s | Belt naik di depan, / di belakang / turun | belt kedorongz
+029.5s | Belt naik di depan, / di belakang / turun | Panjang bel / tetap,
+030.5s | Belt / naik di depan, / di belakang / turun | jadidi • / • • belakang,
+031.5s | Belt / naik di depan, / di belakang / turun | belt-nya / . turun.
+032.5s | Rasio 2,52 0,82: / tanpa oper gigi | Depan / membesar,
+033.5s | Rasio 2,52 0,82: / tanpa oper gigi | belakang / ; mengecil:
+034.5s | Rasio 2,52 0,82: / tanpa oper gigi | tapi / mulus,
+035.5s | Rasio 2,52 0,82: / tanpa oper gigi | tanpa jeda.
+036.5s | Gas POI: mesin nahan, / motor makin kencang | Makanya • / . pas gas POI,
+037.5s | Gas POI: mesin nahan, / motor makin kencang | mesinnya nahan, / suara
+038.5s | Gas POI: mesin nahan, / motor makin kencang | suara mesinnya / . nahan,
+039.5s | Gas POI: mesin nahan, / motor makin kencang | tapi motornya / - terus / nambah / kencang.
+040.5s | Giginya pindah sendiri | Giginya
+041.5s | Giginya pindah sendiri | tiap / kali...

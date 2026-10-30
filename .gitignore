@@ -1,0 +1,43 @@
+# ==========================================
+# 3D Semi-Real Explainer - Git Ignore Rules
+# ==========================================
+
+# 1. Blender Backups & Temp Files
+*.blend1
+*.blend@
+*.crash
+*.bphys
+
+# 2. Sequential Render Frames (Multi-Gigabyte PNG sequences)
+**/anim_frames/
+**/anim_frames_*/
+**/renders-v0*/
+**/test_anim_frames/
+work/termos-3d/anim_frames/
+work/termos-3d/anim_frames_v04/
+work/termos-3d/renders-v01/
+work/termos-3d/renders-v02/
+work/termos-3d/renders-v03/
+work/termos-3d/test_anim_frames/
+
+# 3. Python & Node Caches & Executables & AI Models
+__pycache__/
+*.py[cod]
+*$py.class
+*.exe
+*.bin
+work/models/
+node_modules/
+package-lock.json
+
+# 4. Agent & Local Workspace Configs
+.codex/
+.gemini/
+.agents/
+*.log
+*.tmp
+
+# 5. OS Metadata
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -1,0 +1,132 @@
+{
+  "lookdev_hero": {
+    "ANCHOR_HERO_TITLE": {
+      "x_px": 540,
+      "y_px": 199,
+      "x_pct": 50.0,
+      "y_pct": 10.38,
+      "depth_cm": 59.47
+    },
+    "ANCHOR_CAP_LID": {
+      "x_px": 482,
+      "y_px": 415,
+      "x_pct": 44.65,
+      "y_pct": 21.61,
+      "depth_cm": 57.39
+    },
+    "ANCHOR_SILICONE_STOPPER": {
+      "x_px": 499,
+      "y_px": 519,
+      "x_pct": 46.2,
+      "y_pct": 27.02,
+      "depth_cm": 58.15
+    },
+    "ANCHOR_MOUTHPIECE_SPOUT": {
+      "x_px": 411,
+      "y_px": 548,
+      "x_pct": 38.05,
+      "y_pct": 28.52,
+      "depth_cm": 59.39
+    },
+    "ANCHOR_OUTER_SHELL_ICEGRAY": {
+      "x_px": 349,
+      "y_px": 910,
+      "x_pct": 32.33,
+      "y_pct": 47.38,
+      "depth_cm": 60.97
+    },
+    "ANCHOR_VACUUM_GAP_2MM": {
+      "x_px": 672,
+      "y_px": 956,
+      "x_pct": 62.24,
+      "y_pct": 49.81,
+      "depth_cm": 58.17
+    },
+    "ANCHOR_COPPER_GOLD_MIRROR": {
+      "x_px": 636,
+      "y_px": 1106,
+      "x_pct": 58.91,
+      "y_pct": 57.6,
+      "depth_cm": 58.23
+    },
+    "ANCHOR_INNER_STEEL_SUS304": {
+      "x_px": 595,
+      "y_px": 1255,
+      "x_pct": 55.05,
+      "y_pct": 65.35,
+      "depth_cm": 58.33
+    },
+    "ANCHOR_HOT_LIQUID_CORE": {
+      "x_px": 484,
+      "y_px": 1330,
+      "x_pct": 44.8,
+      "y_pct": 69.29,
+      "depth_cm": 59.45
+    }
+  },
+  "lookdev_peeled": {
+    "ANCHOR_HERO_TITLE": {
+      "x_px": 555,
+      "y_px": 130,
+      "x_pct": 51.35,
+      "y_pct": 6.79,
+      "depth_cm": 70.68
+    },
+    "ANCHOR_CAP_LID": {
+      "x_px": 514,
+      "y_px": 307,
+      "x_pct": 47.58,
+      "y_pct": 15.97,
+      "depth_cm": 68.51
+    },
+    "ANCHOR_SILICONE_STOPPER": {
+      "x_px": 526,
+      "y_px": 530,
+      "x_pct": 48.67,
+      "y_pct": 27.59,
+      "depth_cm": 69.41
+    },
+    "ANCHOR_MOUTHPIECE_SPOUT": {
+      "x_px": 448,
+      "y_px": 673,
+      "x_pct": 41.45,
+      "y_pct": 35.03,
+      "depth_cm": 70.69
+    },
+    "ANCHOR_OUTER_SHELL_ICEGRAY": {
+      "x_px": 328,
+      "y_px": 1042,
+      "x_pct": 30.39,
+      "y_pct": 54.29,
+      "depth_cm": 72.63
+    },
+    "ANCHOR_VACUUM_GAP_2MM": {
+      "x_px": 671,
+      "y_px": 1086,
+      "x_pct": 62.16,
+      "y_pct": 56.54,
+      "depth_cm": 69.72
+    },
+    "ANCHOR_COPPER_GOLD_MIRROR": {
+      "x_px": 642,
+      "y_px": 1211,
+      "x_pct": 59.42,
+      "y_pct": 63.05,
+      "depth_cm": 69.72
+    },
+    "ANCHOR_INNER_STEEL_SUS304": {
+      "x_px": 607,
+      "y_px": 1335,
+      "x_pct": 56.22,
+      "y_pct": 69.55,
+      "depth_cm": 69.76
+    },
+    "ANCHOR_HOT_LIQUID_CORE": {
+      "x_px": 511,
+      "y_px": 1399,
+      "x_pct": 47.33,
+      "y_pct": 72.86,
+      "depth_cm": 70.76
+    }
+  }
+}

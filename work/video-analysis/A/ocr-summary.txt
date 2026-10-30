@@ -1,0 +1,76 @@
+000.5s | Bensin Rp19,4 jt • listrik Rp17 jt | bensin, Rp19 jutaan. / Motor • -
+001.5s | Bensin Rp19,4 jt • listrik Rp17 jt | Motor bensin, • / Rp19 / •utaan.
+002.5s | Bensin Rp19,4 jt • listrik Rp17 jt | Motor / juta: lebih murah.
+003.5s | Bensin Rp19,4 jt • listrik Rp17 jt | Motor listrik, Rp17 / juta: / . lebih murah.
+004.5s | Bensin Rp19,4 jt • listrik Rp17 jt | Motor listrik, Rp17 / juta: lebih / murah.
+005.5s | 2020 / Bensin Rp19,4 jt • listrik Rp17 jt | Tapi baterainya?
+006.5s | 2020 / Bensin Rp19,4 jt • listrik Rp17 jt | • ribu sebulan. / Rp200
+007.5s | 2020 / Bensin Rp19,4 jt • listrik Rp17 jt | Sewa, Rp200 ribu / sebulan.
+008.5s | 2020 / Bensin Rp19,4 jt • listrik Rp17 jt | - sendiri, / Mau punya / Rp29 juta.
+009.5s | 2020 / Bensin Rp19,4 jt • listrik Rp17 jt | Mau punya sendiri, / • • • juta.
+010.5s | Mana yang beneran lebih hemat? | Jadi / mana / . yang / beneran lebih hemat?
+011.5s | Mana yang beneran lebih hemat? | Jadi mana yang / beneran lebih / hemat?
+012.5s | Mana yang beneran lebih hemat? | Kita bedah, sampai / baterainya • . / diganti.
+013.5s | Pertalite vs listrik rumah | 100 / • kilometer: motor / bensin minum hampir
+014.5s | Pertalite vs listrik rumah | • kilometer: / motor / bensin minum hampir
+015.5s | Pertalite vs listrik rumah | 100 kilometer: motor / minum hampir / bensin
+016.5s | Pertalite vs listrik rumah | liter Pertalite, Rp18 ribu. / 2
+017.5s | Pertalite vs listrik rumah | ' 2 liter pertalite.= / ribu.
+018.5s | Pertalite vs listrik rumah | 2 liter Pertalite, Rp18 ribu.
+019.5s | Pertalite vs listrik rumah | Motor listri / nyedot
+020.5s | Pertalite vs listrik rumah | kilowatt / •am dari / meteran rumah:
+021.5s | Pertalite vs listrik rumah | kilowatt jam dari / rumah: / meteran
+022.5s | Pertalite vs listrik rumah | Rp5.200.
+023.5s | Pertalite vs listrik rumah | Belum servis.
+024.5s | Servis: oli vs tanpa oli | Motor bensin ganti / oli tiap 4 bulan,
+025.5s | Servis: oli vs tanpa oli | Motor bensin • - / ganti / oli tiap 4 bulan,
+026.5s | Servis: oli vs tanpa oli | Motor bensin ganti / oli tiapa / bulan ,
+027.5s | Servis: oli vs tanpa oli | plus • / busi, / filter, V-belt:
+028.5s | Servis: oli vs tanpa oli | plus busi, filter, / V-belt:
+029.5s | Servis: oli vs tanpa oli | sekitar Rp700 ribu. / setahun
+030.5s | Servis: oli vs tanpa oli | setahun sekitaræ / ribu.
+031.5s | Servis: oli vs tanpa oli | • listrik / nggak pakai oli: / Motor
+032.5s | Servis: oli vs tanpa oli | dinamonya •
+033.5s | VANG Ot / Servis: oli vs tanpa oli | dinamonya di • - / : • dalam • . / roda.
+034.5s | Ot / Pajak tahunan (Jakarta) | Pajaknya •
+035.5s | Vaus Ot / Pajak tahunan (Jakarta) | • bensin • • / Rp273 ribu setahun,
+036.5s | Vaus Ot / Pajak tahunan (Jakarta) | bensin • • / Rp273 / ribu setahun,
+037.5s | Vaus Ot / Pajak tahunan (Jakarta) | bensin Rp273 ribu / setahun,
+038.5s | Vaus Ot / Pajak tahunan (Jakarta) | listrik cuma • • / ribu. / Rp35
+039.5s | Sewa, beli, atau ganti? | Nah, baterainya.
+040.5s | Sewa, beli, atau ganti? | Nah, baterainya.
+041.5s | Sewa, beli, atau ganti? | Sewa5tahun: • / Rp12 / •uta,
+042.5s | Sewa, beli, atau ganti? | persis dengan / sama • / selisih harganya.
+043.5s | Sewa, beli, atau ganti? | sama persis dengan / selisih / harganya.
+044.5s | Sewa, beli, atau ganti? | Kalau • - / beli sendiri,
+045.5s | Sewa, beli, atau ganti? | ganti • / barunya Rp17, 5 juta.
+046.5s | Sewa, beli, atau ganti? | ganti barunya • / Rp17,5 / •uta.
+047.5s | Sewa, beli, atau ganti? | Untungnya / . sel LFP diuji
+048.5s | Sewa, beli, atau ganti? | Untungnya / diuji
+049.5s | Sewa, beli, atau ganti? | ribuan / tahan / kali / Fl cas: 50 kilo sehari,
+050.5s | Sewa, beli, atau ganti? | tahan ribuan kali / cas: 50 kilo sehari,
+051.5s | Sewa, beli, atau ganti? | tahan ribuan kali / cas: 50 kilo
+052.5s | Sewa, beli, atau ganti? | 5 tahun= / sekitar 750 kali.
+053.5s | Sewa, beli, atau ganti? | 5 tahun baru sekitaa / kali. .
+054.5s | Harga + energi + servis + pajak | Hitung / • semua / selama 5 tahun.
+055.5s | Harga + energi + servis + pajak | Hitung semua / 5 tahun. / selama
+056.5s | Harga + energi + servis + pajak | kilo sehari: / 10
+057.5s | Harga + energi + servis + pajak | bensin lebih hemat Rp3 juta.
+058.5s | Harga + energi + servis + pajak | bensin lebih / hemat Rp3 / •uta.
+059.5s | Harga + energi + servis + pajak | 25 / kilo: listrik menang tipis.
+060.5s | Harga + energi + servis + pajak | 25 kilo: / listrik / menang tipis.
+061.5s | Harga + energi + servis + pajak | 50 kilo: listrik hemat / hampir Rp9 juta.
+062.5s | Harga + energi + servis + pajak | kilo: / listrik hemat / hampir Rp9 juta.
+063.5s | Harga + energi + servis + pajak | 50 kilo: listrik hemat / Rp9 juta. / hampir •
+064.5s | Harga + energi + servis + pajak | 50 kilo: listrik hemat / hampir Rp / • juta.
+065.5s | Tergantung jarakmu tiap hari | Jadi, • / dihitung / 5 tahun:
+066.5s | Tergantung jarakmu tiap hari | sehari. . / di atas 25 kilo,
+067.5s | Tergantung jarakmu tiap hari | sehari di atasa / kilo,
+068.5s | Tergantung jarakmu tiap hari | listri / yang / • menang.
+069.5s | Tergantung jarakmu tiap hari | Di bawah@ / kilo,
+070.5s | Tergantung jarakmu tiap hari | baterainya / atau kala / harus diganti ,
+071.5s | Tergantung jarakmu tiap hari | atau kalau baterainya / harus • , . / diganti,
+072.5s | Tergantung jarakmu tiap hari | bensin masih / lebih / hemat.
+073.5s | 2620 / Bensin Rp19,4 jt • listrik Rp17 jt | Makanya,
+074.5s | Bensin Rp19,4 jt • listrik Rp17 jt | sebelum / tergoda / harga di dealer:
+075.5s | O tR 2020 / Bensin Rp19,4 jt • listrik Rp17 jt | sebelum tergoda / harga di dealer:

@@ -1,0 +1,68 @@
+0
+00:00:00,000 --> 00:00:03,580
+Udah berjam-jam pas dituang, masih panas.
+
+1
+00:00:04,080 --> 00:00:04,840
+Kok bisa?
+
+2
+00:00:05,320 --> 00:00:06,620
+Kita belah termosnya.
+
+3
+00:00:07,080 --> 00:00:09,000
+Ada dinding dalam dan dinding luar.
+
+4
+00:00:09,380 --> 00:00:12,840
+Di antaranya ada vakum, celah yang hampir tanpa udara.
+
+5
+00:00:13,320 --> 00:00:18,120
+Di celah ini, panas susah merambat lewat gas atau terbawa aliran udara.
+
+6
+00:00:18,520 --> 00:00:23,500
+Tapi radiasi, perpindahan panas lewat pancaran, masih bisa melintas.
+
+7
+00:00:24,040 --> 00:00:25,420
+Lapisan reflektif,
+
+8
+00:00:25,840 --> 00:00:30,640
+permukaan pemandul di luar dinding dalam, membantu menguranginya.
+
+9
+00:00:31,160 --> 00:00:34,020
+Tutup rapatnya juga membatasi pertukaran udara.
+
+10
+00:00:34,460 --> 00:00:38,100
+Panas tetap bisa lolos, termasuk lewat sambungan leher.
+
+11
+00:00:38,560 --> 00:00:41,760
+Makanya isinya tetap mendingin, cuma lebih lambat.
+
+12
+00:00:42,240 --> 00:00:44,100
+Contoh dari Zojirusi,
+
+13
+00:00:44,520 --> 00:00:47,020
+air 95 derajat Celsius,
+
+14
+00:00:47,360 --> 00:00:50,560
+6 jam kemudian masih minimal 71,
+
+15
+00:00:50,980 --> 00:00:52,780
+di ruangan 20 derajat.
+
+16
+00:00:53,000 --> 00:00:54,840
+Itulah kenapa? Meskipun?
+

@@ -1,0 +1,107 @@
+{
+  "version": "0.1",
+  "stage": 2,
+  "status": "facts_and_visual_approved_awaiting_stage4_audio_feedback",
+  "stage4_audio_review": {
+    "status": "awaiting_user_feedback",
+    "current_version": "0.2",
+    "audio": "termos-04-narasi-v0.2.mp3",
+    "script": "termos-04-narasi-v0.2.txt",
+    "review_notes": "termos-04-review-v0.2.md",
+    "cue_manifest": "termos-04-cue-v0.2.json",
+    "duration_seconds": 55.078,
+    "provider": "ElevenLabs",
+    "voice_id": "zmqLb9Ysr8fUvDD7hXK8",
+    "voice_name": "Zan - Conversational",
+    "model_id": "eleven_multilingual_v2",
+    "word_level_alignment": true,
+    "external_text_synthesis_permission": "explicitly approved by user (ElevenLabs switch requested by user)",
+    "superseded": [
+      {"version": "0.1", "audio": "termos-04-narasi-v0.1.mp3", "provider": "edge-tts", "voice_id": "id-ID-ArdiNeural", "duration_seconds": 51.76, "reason": "user requested ElevenLabs"}
+    ]
+  },
+  "stage3_visual_review": {
+    "status": "approved",
+    "user_feedback": "gambrnya udh oke. lanjutin",
+    "image": "termos-03-bedah-v0.1.png",
+    "notes": "termos-03-catatan-v0.1.md",
+    "generation_method": "built_in_imagegen",
+    "generation_calls": 3,
+    "image_type": "raster_review_board",
+    "internal_dimensions_verified": false,
+    "three_dimensional_mesh_created": false
+  },
+  "user_fact_checkpoint": {
+    "status": "approved",
+    "evidence": "User replied: udah sesuai"
+  },
+  "review_date": "2026-10-29",
+  "topic": "Kok termos bisa menahan panas?",
+  "explanation_mode": "mechanism",
+  "reference_product": {
+    "manufacturer": "Zojirushi",
+    "model": "SM-WA48",
+    "source_id": "S-PRODUCT",
+    "capacity_l": 0.48,
+    "external_dimensions_cm_approx": {
+      "width": 6.5,
+      "depth": 7,
+      "height": 21.5
+    },
+    "internal_geometry_status": "not_verified_for_specific_model"
+  },
+  "manufacturer_specification": {
+    "source_id": "S-PRODUCT",
+    "evidence_type": "manufacturer_published_specification_not_independent_measurement",
+    "checkpoint_ids": ["N-01", "N-02", "N-03"],
+    "initial_water_temperature_c": {"value": 95, "tolerance": 1},
+    "elapsed_hours": 6,
+    "final_water_temperature_c": {"operator": ">=", "value": 71},
+    "ambient_temperature_c": {"value": 20, "tolerance": 2},
+    "orientation": "upright",
+    "fill_level": "specified_in_manufacturer_instructions",
+    "cooling_time_series": null,
+    "interpolation_is_measured_data": false
+  },
+  "visualization": {
+    "internal_view": "principle_illustration_until_model_specific_geometry_is_verified",
+    "vacuum_location": "between_inner_and_outer_walls",
+    "vacuum_gap_width_mm": null,
+    "wall_thickness_mm": null,
+    "vacuum_pressure_pa": null,
+    "reflective_foil_material_for_specific_model": null,
+    "reflective_foil_thickness_mm": null,
+    "time_series_animation_from_specification": false
+  },
+  "sources": [
+    {
+      "id": "S-PRODUCT",
+      "url": "https://www.zojirushi.co.jp/syohin/bottle/smwa/",
+      "locator": "SM-WA48 specification table and note 4",
+      "read_status": "opened_and_read"
+    },
+    {
+      "id": "S-PHYSICS",
+      "url": "https://www.physics.hku.hk/~phys1055/lectures/chap01.html",
+      "locator": "The Vacuum flask",
+      "read_status": "opened_and_read"
+    },
+    {
+      "id": "S-CONSTRUCTION",
+      "url": "https://store.zojirushi.com/blogs/blog/design-explained-our-superior-vacuum-insulation",
+      "locator": "conduction, reflective foil, and lids paragraphs",
+      "read_status": "opened_and_read"
+    },
+    {
+      "id": "S-NECK",
+      "url": "https://www.zojirushi.co.jp/syohin/bottle_tumbler/ondo_mahou/",
+      "locator": "vacuum section footnote and mouth-area heat-loss illustration",
+      "read_status": "opened_and_read"
+    },
+    {
+      "id": "S-MANUAL-INDEX",
+      "url": "https://www.zojirushi.co.jp/toiawase/manual/search/?s=SMWA48",
+      "read_status": "index_opened_manual_pdf_not_read"
+    }
+  ]
+}

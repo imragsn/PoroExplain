@@ -1,0 +1,29 @@
+{
+  "A": {
+    "background_sample_rgb": [
+      234,
+      227,
+      211
+    ],
+    "background_sample_hex": "#eae3d3",
+    "sample_area": "x=60-90%, y=2-6% on frame t=0.5s; decoded PNG"
+  },
+  "B": {
+    "background_sample_rgb": [
+      239,
+      233,
+      224
+    ],
+    "background_sample_hex": "#efe9e0",
+    "sample_area": "x=60-90%, y=2-6% on frame t=0.5s; decoded PNG"
+  },
+  "C": {
+    "background_sample_rgb": [
+      251,
+      251,
+      249
+    ],
+    "background_sample_hex": "#fbfbf9",
+    "sample_area": "x=60-90%, y=2-6% on frame t=0.5s; decoded PNG"
+  }
+}

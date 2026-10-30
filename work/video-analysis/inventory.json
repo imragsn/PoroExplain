@@ -1,0 +1,32 @@
+[
+  {
+    "id": "A",
+    "title": "MOTOR LISTRIK ATAU BENSIN",
+    "duration": 76.457375,
+    "width": 720,
+    "height": 1280,
+    "fps": "30/1",
+    "frames": 76,
+    "overview": "C:\\Users\\lenovo\\Documents\\Codex\\2026-10-29\\gw-mau-reverse-enginering-sebuah-style\\work\\video-analysis\\A\\overview.jpg"
+  },
+  {
+    "id": "B",
+    "title": "ISI BENSIN",
+    "duration": 78.505375,
+    "width": 720,
+    "height": 1280,
+    "fps": "30/1",
+    "frames": 78,
+    "overview": "C:\\Users\\lenovo\\Documents\\Codex\\2026-10-29\\gw-mau-reverse-enginering-sebuah-style\\work\\video-analysis\\B\\overview.jpg"
+  },
+  {
+    "id": "C",
+    "title": "CARA KERJA MOTOR MATIC",
+    "duration": 42.166667,
+    "width": 540,
+    "height": 960,
+    "fps": "30/1",
+    "frames": 42,
+    "overview": "C:\\Users\\lenovo\\Documents\\Codex\\2026-10-29\\gw-mau-reverse-enginering-sebuah-style\\work\\video-analysis\\C\\overview.jpg"
+  }
+]

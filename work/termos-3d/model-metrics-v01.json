@@ -1,0 +1,35 @@
+{
+  "unit": "cm",
+  "overall_bounds": {
+    "width_x": 6.52,
+    "depth_y": 7.02,
+    "height_z": 21.5,
+    "min": [
+      -3.26,
+      -3.52,
+      0.0
+    ],
+    "max": [
+      3.26,
+      3.5,
+      21.5
+    ]
+  },
+  "official_approx_cm": {
+    "width": 6.5,
+    "depth": 7.0,
+    "height": 21.5
+  },
+  "mesh_objects": [
+    "base_ring",
+    "brand_mark_placeholder",
+    "cap_outer",
+    "hinge_block",
+    "neck_band",
+    "outer_shell",
+    "release_button",
+    "release_button_inset",
+    "safety_lock",
+    "safety_lock_ridge"
+  ]
+}

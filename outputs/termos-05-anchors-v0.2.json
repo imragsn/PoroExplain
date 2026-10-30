@@ -1,0 +1,306 @@
+{
+  "shot_01_hero_exterior": {
+    "name": "Shot 01: Hero 3-Quarter (Exterior Utuh)",
+    "description": "Bentuk luar utuh: siluet botol, proporsi ramping, tombol buka dan pengunci samping.",
+    "camera_position": [
+      36.0,
+      -50.0,
+      16.0
+    ],
+    "camera_target": [
+      0.0,
+      0.0,
+      10.75
+    ],
+    "anchors_screen_space": {
+      "ANCHOR_HERO_TITLE": {
+        "x_percent": 36.38,
+        "y_percent": 16.79,
+        "depth": 57.2,
+        "is_visible": true
+      },
+      "ANCHOR_CAP_LID": {
+        "x_percent": 39.28,
+        "y_percent": 23.71,
+        "depth": 58.12,
+        "is_visible": true
+      },
+      "ANCHOR_RELEASE_BUTTON": {
+        "x_percent": 38.99,
+        "y_percent": 27.75,
+        "depth": 58.16,
+        "is_visible": true
+      },
+      "ANCHOR_SILICONE_STOPPER": {
+        "x_percent": 50.0,
+        "y_percent": 31.7,
+        "depth": 61.26,
+        "is_visible": true
+      },
+      "ANCHOR_OUTER_WALL": {
+        "x_percent": 62.83,
+        "y_percent": 49.75,
+        "depth": 59.95,
+        "is_visible": true
+      },
+      "ANCHOR_VACUUM_GAP": {
+        "x_percent": 61.38,
+        "y_percent": 52.46,
+        "depth": 60.24,
+        "is_visible": true
+      },
+      "ANCHOR_REFLECTIVE_SHIELD": {
+        "x_percent": 60.95,
+        "y_percent": 55.19,
+        "depth": 60.38,
+        "is_visible": true
+      },
+      "ANCHOR_INNER_WALL": {
+        "x_percent": 60.12,
+        "y_percent": 57.89,
+        "depth": 60.58,
+        "is_visible": true
+      },
+      "ANCHOR_HOT_LIQUID": {
+        "x_percent": 50.0,
+        "y_percent": 60.02,
+        "depth": 62.15,
+        "is_visible": true
+      },
+      "ANCHOR_BASE": {
+        "x_percent": 39.88,
+        "y_percent": 79.37,
+        "depth": 59.88,
+        "is_visible": true
+      }
+    }
+  },
+  "shot_02_frontal_cutaway": {
+    "name": "Shot 02: Frontal Cross-Section (Penampang Frontal)",
+    "description": "Penampang teknis frontal: urutan 5 lapisan (Dinding Luar, Vakum, Reflektif, Dinding Dalam, Cairan).",
+    "camera_position": [
+      0.0,
+      -60.0,
+      10.75
+    ],
+    "camera_target": [
+      0.0,
+      0.0,
+      10.75
+    ],
+    "anchors_screen_space": {
+      "ANCHOR_HERO_TITLE": {
+        "x_percent": 50.0,
+        "y_percent": 14.71,
+        "depth": 55.5,
+        "is_visible": true
+      },
+      "ANCHOR_CAP_LID": {
+        "x_percent": 50.0,
+        "y_percent": 22.07,
+        "depth": 56.4,
+        "is_visible": true
+      },
+      "ANCHOR_RELEASE_BUTTON": {
+        "x_percent": 50.0,
+        "y_percent": 26.17,
+        "depth": 56.3,
+        "is_visible": true
+      },
+      "ANCHOR_SILICONE_STOPPER": {
+        "x_percent": 50.0,
+        "y_percent": 31.25,
+        "depth": 60.0,
+        "is_visible": true
+      },
+      "ANCHOR_OUTER_WALL": {
+        "x_percent": 65.8,
+        "y_percent": 49.31,
+        "depth": 60.0,
+        "is_visible": true
+      },
+      "ANCHOR_VACUUM_GAP": {
+        "x_percent": 64.07,
+        "y_percent": 52.08,
+        "depth": 60.0,
+        "is_visible": true
+      },
+      "ANCHOR_REFLECTIVE_SHIELD": {
+        "x_percent": 63.58,
+        "y_percent": 54.86,
+        "depth": 60.0,
+        "is_visible": true
+      },
+      "ANCHOR_INNER_WALL": {
+        "x_percent": 62.59,
+        "y_percent": 57.64,
+        "depth": 60.0,
+        "is_visible": true
+      },
+      "ANCHOR_HOT_LIQUID": {
+        "x_percent": 50.0,
+        "y_percent": 60.42,
+        "depth": 60.0,
+        "is_visible": true
+      },
+      "ANCHOR_BASE": {
+        "x_percent": 50.0,
+        "y_percent": 80.53,
+        "depth": 56.5,
+        "is_visible": true
+      }
+    }
+  },
+  "shot_03_close_stopper": {
+    "name": "Shot 03: Close-Up Neck & Silicone Stopper (Penyekat Panas)",
+    "description": "Detail mulut botol & stopper silikon penahan uap panas konveksi.",
+    "camera_position": [
+      18.0,
+      -32.0,
+      21.0
+    ],
+    "camera_target": [
+      0.0,
+      0.0,
+      17.5
+    ],
+    "anchors_screen_space": {
+      "ANCHOR_HERO_TITLE": {
+        "x_percent": 29.89,
+        "y_percent": 26.39,
+        "depth": 32.5,
+        "is_visible": true
+      },
+      "ANCHOR_CAP_LID": {
+        "x_percent": 34.39,
+        "y_percent": 38.11,
+        "depth": 33.5,
+        "is_visible": true
+      },
+      "ANCHOR_RELEASE_BUTTON": {
+        "x_percent": 33.98,
+        "y_percent": 45.09,
+        "depth": 33.55,
+        "is_visible": true
+      },
+      "ANCHOR_SILICONE_STOPPER": {
+        "x_percent": 50.0,
+        "y_percent": 50.0,
+        "depth": 36.88,
+        "is_visible": true
+      },
+      "ANCHOR_OUTER_WALL": {
+        "x_percent": 73.0,
+        "y_percent": 80.7,
+        "depth": 35.94,
+        "is_visible": true
+      },
+      "ANCHOR_VACUUM_GAP": {
+        "x_percent": 70.33,
+        "y_percent": 84.98,
+        "depth": 36.2,
+        "is_visible": true
+      },
+      "ANCHOR_REFLECTIVE_SHIELD": {
+        "x_percent": 69.54,
+        "y_percent": 89.39,
+        "depth": 36.35,
+        "is_visible": true
+      },
+      "ANCHOR_INNER_WALL": {
+        "x_percent": 68.02,
+        "y_percent": 93.68,
+        "depth": 36.54,
+        "is_visible": true
+      },
+      "ANCHOR_HOT_LIQUID": {
+        "x_percent": 50.0,
+        "y_percent": 95.99,
+        "depth": 37.88,
+        "is_visible": true
+      },
+      "ANCHOR_BASE": {
+        "x_percent": 35.67,
+        "y_percent": 131.35,
+        "depth": 35.47,
+        "is_visible": false
+      }
+    }
+  },
+  "shot_04_iso_wedge_cut": {
+    "name": "Shot 04: Isometric 3D Wedge Cut (Potongan Isometrik 90 Derajat)",
+    "description": "Potongan isometrik 3D: memperlihatkan volume luar silinder dan lapisan dalam sekaligus.",
+    "camera_position": [
+      40.0,
+      -42.0,
+      22.0
+    ],
+    "camera_target": [
+      0.0,
+      0.0,
+      10.75
+    ],
+    "anchors_screen_space": {
+      "ANCHOR_HERO_TITLE": {
+        "x_percent": 32.86,
+        "y_percent": 16.09,
+        "depth": 53.64,
+        "is_visible": true
+      },
+      "ANCHOR_CAP_LID": {
+        "x_percent": 36.56,
+        "y_percent": 23.26,
+        "depth": 54.72,
+        "is_visible": true
+      },
+      "ANCHOR_RELEASE_BUTTON": {
+        "x_percent": 36.23,
+        "y_percent": 27.56,
+        "depth": 54.92,
+        "is_visible": true
+      },
+      "ANCHOR_SILICONE_STOPPER": {
+        "x_percent": 50.0,
+        "y_percent": 30.89,
+        "depth": 57.8,
+        "is_visible": true
+      },
+      "ANCHOR_OUTER_WALL": {
+        "x_percent": 62.07,
+        "y_percent": 50.51,
+        "depth": 56.87,
+        "is_visible": true
+      },
+      "ANCHOR_VACUUM_GAP": {
+        "x_percent": 60.67,
+        "y_percent": 53.23,
+        "depth": 57.29,
+        "is_visible": true
+      },
+      "ANCHOR_REFLECTIVE_SHIELD": {
+        "x_percent": 60.25,
+        "y_percent": 56.02,
+        "depth": 57.55,
+        "is_visible": true
+      },
+      "ANCHOR_INNER_WALL": {
+        "x_percent": 59.45,
+        "y_percent": 58.74,
+        "depth": 57.88,
+        "is_visible": true
+      },
+      "ANCHOR_HOT_LIQUID": {
+        "x_percent": 50.0,
+        "y_percent": 60.26,
+        "depth": 59.8,
+        "is_visible": true
+      },
+      "ANCHOR_BASE": {
+        "x_percent": 37.79,
+        "y_percent": 80.29,
+        "depth": 58.56,
+        "is_visible": true
+      }
+    }
+  }
+}

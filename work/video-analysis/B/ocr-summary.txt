@@ -1,0 +1,78 @@
+000.5s | Pertalite atau Pertamax: yang mana? | u", Pak?
+001.5s | Pertalite atau Pertamax: yang mana? | Pertalite: • • • / Rp430 ribu.
+002.5s | Pertalite atau Pertamax: yang mana? | Pertalite • / • ribu. / Rp430
+003.5s | Pertalite atau Pertamax: yang mana? | Pertalite: Rp430Z
+004.5s | Pertalite atau Pertamax: yang mana? | • ribu. / Rp686
+005.5s | Pertalite atau Pertamax: yang mana? | Rp686 / • ribu.
+006.5s | Pertalite atau Pertamax: yang mana? | Sensih Rp256 ribu,
+007.5s | Pertalite atau Pertamax: yang mana? | Selisi / Rp256 / • ribu,
+008.5s | Pertalite atau Pertamax: yang mana? | Selisih RP25 / ribu,
+009.5s | Pertalite atau Pertamax: yang mana? | cuma bua—'»•' / ang / beda dua angka.
+010.5s | Pertalite atau Pertamax: yang mana? | cuma buat Oktan yang / - angka. / beda du
+011.5s | Pertalite bikin mesin ngelitik? | Kata
+012.5s | Pertalite bikin mesin ngelitik? | - bikin / mesin ngelitik.
+013.5s | Pertalite bikin mesin ngelitik? | Pertalite bikin mesi / ngelitik.
+014.5s | piston mencet, busi nyala | piston / mencet / bensin dan udara,
+015.5s | piston mencet, busi nyala | piston mencet / bensin dan / udara,
+016.5s | piston mencet, busi nyala | busi nyala, apinya merambat.
+017.5s | sisa campuran meledak duluan | ensinnya kurang / tahan dipencet,
+018.5s | sisa campuran meledak duluan | Kalau bensinnya kurang / dipencet, / taha •
+019.5s | sisa campuran meledak duluan | campurannya / meledak duluan,
+020.5s | sisa campuran meledak duluan | sisa campurannya / meleda • / •duluan,
+021.5s | sisa campuran meledak duluan | apinya / sampai: tek!
+022.5s | sisa campuran meledak duluan | ngelitik. / Itu
+023.5s | tahan dipencet, bukan tenaga | Oktan / uma ukuran / tahan pencet itu;
+024.5s | tahan dipencet, bukan tenaga | Oktan cuma ukuran / tahan pence
+025.5s | tahan dipencet, bukan tenaga | energinyae / liter / hampir sama.
+026.5s | tahan dipencet, bukan tenaga | energinya per liter / hampi / sama.
+027.5s | dengar tek, pengapian dimundurkan | Avanza puny / Retukan, / . sensor
+028.5s | dengar tek, pengapian dimundurkan | - • mikrofon / kaya / kecil di blok mesin.
+029.5s | dengar tek, pengapian dimundurkan | kayak mikrofon / kecil di bl / • • • •mesin.
+030.5s | dengar tek, pengapian dimundurkan | Denga— / komputer / mesin memundurkan
+031.5s | dengar tek, pengapian dimundurkan | Dengar tek, komputer / memundurkan
+032.5s | dengar tek, pengapian dimundurkan | pengapian / sedikit. / , Waktu •
+033.5s | dengar tek, pengapian dimundurkan | Ngelitiknya / . hilang,
+034.5s | dengar tek, pengapian dimundurkan | . dan iritnya / r • tenaga •
+035.5s | dengar tek, pengapian dimundurkan | urun sedikit. / ikut
+036.5s | Pertamax lebih irit seberapa? | Seberapa / sedikit?
+037.5s | Pertamax lebih irit seberapa? | Uji. . / rang lain: Xenia di dyno,
+038.5s | Pertamax lebih irit seberapa? | Uji orang Iain / Xenia. • / di dyno,
+039.5s | Pertamax lebih irit seberapa? | tenaganya • / eda / kurang dari 1 persen.
+040.5s | Pertamax lebih irit seberapa? | tenaganya beda / dari / 1 persen.
+041.5s | Pertamax lebih irit seberapa? | Stargazer,
+042.5s | Pertamax lebih irit seberapa? | Stargazer,
+043.5s | Pertamax lebih irit seberapa? | cuma / beda 1,3 kilometer.
+044.5s | Pertamax lebih irit seberapa? | jaraknya cuma / bed€ / kilometer.
+045.5s | Pertamax lebih irit seberapa? | beberapa uji, / Pertamax bikin irit
+046.5s | Pertamax lebih irit seberapa? | Dari beberapa uji, / ikin irit / Pertamax •
+047.5s | Pertamax lebih irit seberapa? | kira-kira 1 sampai 8 persen.
+048.5s | Pertamax lebih irit seberapa? | kira-kira 1 / 8 persen.
+049.5s | Pertamax lebih irit seberapa? | Harganya?
+050.5s | harga +59,5 +1-8 % | 60 persen lebih mahal.
+051.5s | harga +59,5 irit +1-8 % | Hampiro / persen lebih mahal.
+052.5s | harga +59,5 irit +1-8 % | Harga / naik 60 persen,
+053.5s | harga +59,5 irit +1-8 % | 60 persen,
+054.5s | harga +59,5 irit +1-8 % | iritny / sebiji.
+055.5s | harga +59,5 irit +1-8 % | kilometer / sebulan,
+056.5s | harga +59,5 irit +1-8 % | selisihnya / etap Rp400 / sampai 500 ribu.
+057.5s | harga +59,5 irit +1-8 % | selisihnya teta / • Rpaoo / sampai 500 ribu.
+058.5s | harga +59,5 irit +1-8 % | selisihnya tetap Rp400 / sampai 500 ribu. I -
+059.5s | Avanza: oktan 90 atau lebih | manual • / vanza / sendiri bilang:
+060.5s | Avanza: oktan 90 atau lebih | Buku manual Avanza / bilang:
+061.5s | Avanza: oktan 90 atau lebih | / oktaaa / tau lebih tinggi.
+062.5s | Avanza: oktan 90 atau lebih | oktan90ataulebit—
+063.5s | Avanza: oktan 90 atau lebih | Agya dat—m / inimal 92.
+064.5s | Avanza: oktan 90 atau lebih | Agya dan Calya: minima
+065.5s | Avanza: oktan 90 atau lebih | Dealemya / sendiri / jawabnya beda-beda.
+066.5s | Avanza: oktan 90 atau lebih | Dealernya sendiri / jawabnya • / beda-beda.
+067.5s | ikuti buku manualmu | bilang 90? / Jadi • / bukumu •
+068.5s | ikuti buku manualmu | Jadi, bukumu bilangO
+069.5s | ikuti buku manualmu | impas,
+070.5s | ikuti buku manualmu | Pertamax harus— / 60 persen lebih
+071.5s | ikuti buku manualmu | Pertamax harus hampW / lebih / 60 persen
+072.5s | ikuti buku manualmu | cuma 1 sampai 8. / tadi
+073.5s | ikuti buku manualmu | sampai : / irit; uji tadi cuma 1
+074.5s | ikuti buku manualmu | minta • / Bukumu
+075.5s | ikuti buku manualmu | Ikuti • / bukunya.
+076.5s | Pertalite atau Pertamax: yang mana? | Cek • / bukumu dulu, / sebelum petugas nanya:
+077.5s | Pertalite atau Pertamax: yang mana? | Cek bukumu dulu, / sebelu / petugas / nanya:

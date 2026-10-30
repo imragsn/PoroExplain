@@ -1,0 +1,95 @@
+{
+  "status": "ready_for_stage_5_assembly",
+  "voice_source": "local",
+  "audio_file": "termos-04-narasi-v0.2.mp3",
+  "duration_seconds": 55.968,
+  "sentence_cues_file": "termos-04-cue-kalimat-v0.2.srt",
+  "word_cues_file": "termos-04-cue-kata-v0.2.srt",
+  "loop_test_file": "termos-04-tes-loop-v0.2.mp3",
+  "format": {
+    "sample_rate": "44100",
+    "channels": 1
+  },
+  "sentence_count": 13,
+  "word_count": 125,
+  "cues": [
+    {
+      "id": "CUE_01",
+      "start_seconds": 0.1,
+      "end_seconds": 3.737,
+      "text": "Udah berjam-jam, pas dituang... masih panas."
+    },
+    {
+      "id": "CUE_02",
+      "start_seconds": 3.687,
+      "end_seconds": 5.337,
+      "text": "Kok bisa?"
+    },
+    {
+      "id": "CUE_03",
+      "start_seconds": 5.337,
+      "end_seconds": 7.625,
+      "text": "Coba kita belah termosnya."
+    },
+    {
+      "id": "CUE_04",
+      "start_seconds": 7.625,
+      "end_seconds": 11.225,
+      "text": "Botol ini punya dua dinding, luar dan dalam."
+    },
+    {
+      "id": "CUE_05",
+      "start_seconds": 11.225,
+      "end_seconds": 15.175,
+      "text": "Di tengah-tengahnya ada celah hampa udara, alias vakum."
+    },
+    {
+      "id": "CUE_06",
+      "start_seconds": 15.175,
+      "end_seconds": 20.387,
+      "text": "Karena nggak ada udara sama sekali, panas dari air nggak punya media buat merambat keluar."
+    },
+    {
+      "id": "CUE_07",
+      "start_seconds": 20.387,
+      "end_seconds": 24.237,
+      "text": "Tapi ingat, panas masih bisa lolos lewat radiasi."
+    },
+    {
+      "id": "CUE_08",
+      "start_seconds": 24.237,
+      "end_seconds": 30.487,
+      "text": "Makanya, dinding dalamnya dilapis bahan pemantul mirip cermin, biar gelombang panasnya mantul balik."
+    },
+    {
+      "id": "CUE_09",
+      "start_seconds": 30.487,
+      "end_seconds": 35.275,
+      "text": "Terus, tutup silikonnya dibuat kedap buat ngunci uap panas di mulut botol."
+    },
+    {
+      "id": "CUE_10",
+      "start_seconds": 35.275,
+      "end_seconds": 38.887,
+      "text": "Panas cuma bisa merembes tipis lewat sambungan lehernya."
+    },
+    {
+      "id": "CUE_11",
+      "start_seconds": 38.887,
+      "end_seconds": 43.162,
+      "text": "Jadi air tetap mendingin, cuma butuh waktu jauh lebih lama."
+    },
+    {
+      "id": "CUE_12",
+      "start_seconds": 43.162,
+      "end_seconds": 53.112,
+      "text": "Di tes resminya, pas diisi air sembilan puluh lima derajat Celsius, setelah enam jam suhunya masih di atas tujuh puluh satu derajat, padahal ruangan sekitarnya dua puluh derajat."
+    },
+    {
+      "id": "CUE_13",
+      "start_seconds": 53.112,
+      "end_seconds": 55.937,
+      "text": "Itulah kenapa, meskipun..."
+    }
+  ]
+}

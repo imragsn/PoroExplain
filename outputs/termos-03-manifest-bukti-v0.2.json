@@ -1,0 +1,84 @@
+{
+  "asset": "Zojirushi SM-WA48-inspired thermos reconstruction",
+  "version": "0.2",
+  "model_scope": "educational cutaway; not manufacturing CAD",
+  "external_dimensions_cm": {
+    "width": 6.5,
+    "depth": 7.0,
+    "height": 21.5,
+    "status": "official_approx"
+  },
+  "components": {
+    "outer_wall_cutaway": {
+      "evidence_status": "verified_external_inferred_internal",
+      "geometry_status": "internal_thickness_exaggerated",
+      "source_ids": [
+        "F-PRODUCT-DIMS",
+        "F-PRODUCT-FRONT"
+      ]
+    },
+    "cap_cutaway": {
+      "evidence_status": "verified_external_schematic_internal",
+      "geometry_status": "cap_mechanism_omitted",
+      "source_ids": [
+        "F-LID-PHOTO"
+      ]
+    },
+    "inner_vessel": {
+      "evidence_status": "principle_verified",
+      "geometry_status": "thickness_and_profile_schematic",
+      "source_ids": [
+        "F-VACUUM-PRINCIPLE"
+      ]
+    },
+    "reflective_layer": {
+      "evidence_status": "principle_verified_not_model_specific",
+      "geometry_status": "thickness_exaggerated",
+      "source_ids": [
+        "F-REFLECTIVE-PRINCIPLE"
+      ]
+    },
+    "vacuum_gap_outer_marker": {
+      "evidence_status": "principle_verified",
+      "geometry_status": "boundary_marker_not_material",
+      "source_ids": [
+        "F-VACUUM-PRINCIPLE"
+      ]
+    },
+    "vacuum_gap_inner_marker": {
+      "evidence_status": "principle_verified",
+      "geometry_status": "boundary_marker_not_material",
+      "source_ids": [
+        "F-VACUUM-PRINCIPLE"
+      ]
+    },
+    "hot_water": {
+      "evidence_status": "illustrative_content",
+      "geometry_status": "fill_level_schematic",
+      "source_ids": [
+        "F-THERMAL-TEST-CONTEXT"
+      ]
+    },
+    "neck_heat_bridge": {
+      "evidence_status": "principle_verified",
+      "geometry_status": "exact_geometry_schematic",
+      "source_ids": [
+        "F-NECK-HEAT-PATH"
+      ]
+    },
+    "cap_gasket": {
+      "evidence_status": "presence_verified",
+      "geometry_status": "exact_profile_schematic",
+      "source_ids": [
+        "F-LID-PHOTO",
+        "F-PRODUCT-PAGE"
+      ]
+    }
+  },
+  "prohibited_claims": [
+    "Internal wall thickness is exact",
+    "Vacuum gap width is exact",
+    "Reflective layer material or thickness is confirmed for SM-WA48",
+    "Cap internal mechanism is a faithful manufacturing reconstruction"
+  ]
+}

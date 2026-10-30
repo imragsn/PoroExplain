@@ -1,0 +1,140 @@
+0
+00:00:00,000 --> 00:00:03,480
+Isi full pak, bertalight 430.000.
+
+1
+00:00:03,480 --> 00:00:06,340
+Pertama, 686.000.
+
+2
+00:00:06,340 --> 00:00:08,620
+Selisi 256.000.
+
+3
+00:00:08,620 --> 00:00:10,540
+Cuma buat octan yang beda dua angka.
+
+4
+00:00:10,540 --> 00:00:11,200
+Kita bedah.
+
+5
+00:00:11,200 --> 00:00:13,500
+Kata montir, bertalight bikin mesin ngelitik.
+
+6
+00:00:13,500 --> 00:00:15,740
+Di cylinder, pistone mencet bensin dan udara.
+
+7
+00:00:15,740 --> 00:00:17,240
+Husi nyala, apinya merambat.
+
+8
+00:00:17,240 --> 00:00:18,940
+Kalau bensinnya kurang tahan di pencet,
+
+9
+00:00:18,940 --> 00:00:20,740
+sisa campurannya meledak duluan,
+
+10
+00:00:20,740 --> 00:00:21,840
+sebelum apinya sampai.
+
+11
+00:00:21,840 --> 00:00:22,340
+Tak.
+
+12
+00:00:22,340 --> 00:00:23,080
+Itu ngelitik.
+
+13
+00:00:23,080 --> 00:00:24,780
+Octan cuma ukuran tahan pencet itu.
+
+14
+00:00:24,780 --> 00:00:26,480
+Energinya per liter hampir sama.
+
+15
+00:00:26,480 --> 00:00:27,980
+Avanza punya sensor ketukan,
+
+16
+00:00:27,980 --> 00:00:29,980
+kayak mikrofon kecil di blok mesin.
+
+17
+00:00:29,952 --> 00:00:32,992
+Dengertak komputer mesin memundurkan waktu pengapian sedikit.
+
+18
+00:00:32,992 --> 00:00:36,312
+Gelitiknya hilang, tapi tenaga dan iritnya ikut turun sedikit.
+
+19
+00:00:36,312 --> 00:00:38,112
+Seberapa sedikit? Uji orang lain.
+
+20
+00:00:38,112 --> 00:00:41,312
+Seniya di Dino, tenaganya beda kurang dari 1%.
+
+21
+00:00:41,312 --> 00:00:45,312
+Stargazer, 10 liter, jaraknya cuma beda 1,3 km.
+
+22
+00:00:45,312 --> 00:00:49,432
+Dari beberapa uji, pertama ks bikin irit kira-kira 1-8%.
+
+23
+00:00:49,432 --> 00:00:52,272
+Harganya, hampir 60% lebih mahal.
+
+24
+00:00:52,272 --> 00:00:54,992
+Harganaik 60%, iritnya naik sebiji.
+
+25
+00:00:54,992 --> 00:00:58,912
+1000 km sebulan, selisinya tetap 400-500 ribu.
+
+26
+00:00:58,912 --> 00:01:00,912
+Buku manual Avanza 7.
+
+27
+00:00:59,904 --> 00:01:02,664
+sendiri bilang 890 atau lebih tinggi.
+
+28
+00:01:02,664 --> 00:01:05,324
+Agia dan Kalia minimal 92.
+
+29
+00:01:05,324 --> 00:01:07,084
+Dilernya sendiri jawabnya beda-beda.
+
+30
+00:01:07,084 --> 00:01:08,784
+Jadi buku mau bilang 90.
+
+31
+00:01:08,784 --> 00:01:12,064
+Biar impas pertama harus hampir 60% lebih irit.
+
+32
+00:01:12,064 --> 00:01:14,024
+Uji tadi cuma 1-8.
+
+33
+00:01:14,024 --> 00:01:16,204
+Buku mau minta 92, ikuti bukunya.
+
+34
+00:01:16,204 --> 00:01:18,204
+Cek buku mau dulu sebelum betul gasnanya.
+

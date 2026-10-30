@@ -1,0 +1,240 @@
+{
+  "status": "awaiting_user_audio_feedback",
+  "audio_file": "termos-04-narasi-v0.1.mp3",
+  "script_file": "termos-04-narasi-v0.1.txt",
+  "sentence_cues_file": "termos-04-cue-kalimat-v0.1.srt",
+  "duration_seconds": 51.76,
+  "word_count_whitespace": 103,
+  "voice": {
+    "provider": "Microsoft Edge Read Aloud through edge-tts",
+    "id": "id-ID-ArdiNeural",
+    "locale": "id-ID",
+    "rate": "+0%",
+    "single_full_text_synthesis": true
+  },
+  "external_text_permission": {
+    "status": "explicitly_approved",
+    "user_reply": "Boleh, buat audionya",
+    "destination_host": "speech.platform.bing.com",
+    "payload": "termos narration v0.1 text"
+  },
+  "edits": {
+    "source_duration_seconds": 52.68,
+    "source_in_seconds": 0.17,
+    "source_out_seconds": 51.93,
+    "internal_speech_splices": false,
+    "purpose": "trim leading and trailing silence only"
+  },
+  "format": {
+    "codec": "mp3",
+    "sample_rate_hz": 24000,
+    "channels": 1
+  },
+  "verification": {
+    "decode_succeeded": true,
+    "provider_caption_text_matches_input": true,
+    "local_asr_completed": true,
+    "asr_brand_spelling": "Zodirushi",
+    "asr_spelling_is_not_a_pronunciation_verdict": true,
+    "perceptual_listening_by_assistant": false,
+    "word_level_alignment_completed": false
+  },
+  "hashes": {
+    "script_sha256": "61f997386dda9c19dc5fa26c8f1ec7c4b68f3fcd9e8e1b677935ce4e1f1dde8c",
+    "audio_sha256": "e69ec245e9b1c2aa14512ae2adddb80812ad2a2a2203297d7bdc6102214dabbc"
+  },
+  "cues": [
+    {
+      "id": "B01",
+      "start_seconds": 0,
+      "end_seconds": 3.53,
+      "text": "Udah berjam-jam, pas dituang... masih panas.",
+      "function": "momen sehari-hari",
+      "part_ids": [
+        "P-02"
+      ],
+      "claim_ids": [],
+      "planned_visual": "Termos dibuka dan minuman dituangkan; bunyi dibuat pada tahap rakit.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    },
+    {
+      "id": "B02",
+      "start_seconds": 3.53,
+      "end_seconds": 5.18,
+      "text": "Kok bisa?",
+      "function": "pertanyaan utama",
+      "part_ids": [],
+      "claim_ids": [],
+      "planned_visual": "Pertahankan benda sebagai fokus dan tampilkan pertanyaan.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    },
+    {
+      "id": "B03",
+      "start_seconds": 5.18,
+      "end_seconds": 7.267,
+      "text": "Kita belah termosnya.",
+      "function": "membuka penjelasan",
+      "part_ids": [
+        "P-03",
+        "P-05",
+        "P-06"
+      ],
+      "claim_ids": [],
+      "planned_visual": "Beralih dari benda utuh ke penampang yang sudah diterima.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    },
+    {
+      "id": "B04",
+      "start_seconds": 7.267,
+      "end_seconds": 9.98,
+      "text": "Ada dinding dalam dan dinding luar.",
+      "function": "identifikasi dinding",
+      "part_ids": [
+        "P-03",
+        "P-06"
+      ],
+      "claim_ids": [
+        "F-01"
+      ],
+      "planned_visual": "Sorot dua dinding; cue label per kata disusun setelah audio diterima.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    },
+    {
+      "id": "B05",
+      "start_seconds": 9.98,
+      "end_seconds": 13.917,
+      "text": "Di antaranya ada vakum, celah yang hampir tanpa udara.",
+      "function": "mengenalkan vakum",
+      "part_ids": [
+        "P-05"
+      ],
+      "claim_ids": [
+        "F-01"
+      ],
+      "planned_visual": "Sorot celah di antara dinding; tunjukkan lokasi yang benar.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    },
+    {
+      "id": "B06",
+      "start_seconds": 13.917,
+      "end_seconds": 18.817,
+      "text": "Di celah ini, panas susah merambat lewat gas atau terbawa aliran udara.",
+      "function": "fungsi celah",
+      "part_ids": [
+        "P-05"
+      ],
+      "claim_ids": [
+        "F-01"
+      ],
+      "planned_visual": "Ilustrasikan penghambatan transfer melalui gas tanpa memberi nilai watt atau tekanan.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    },
+    {
+      "id": "B07",
+      "start_seconds": 18.817,
+      "end_seconds": 24.03,
+      "text": "Tapi radiasi, perpindahan panas lewat pancaran, masih bisa melintas.",
+      "function": "jalur radiasi",
+      "part_ids": [
+        "P-04"
+      ],
+      "claim_ids": [
+        "F-01"
+      ],
+      "planned_visual": "Tunjukkan bahwa jalur radiasi masih dapat melintasi celah; arah energi konseptual.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    },
+    {
+      "id": "B08",
+      "start_seconds": 24.03,
+      "end_seconds": 29.767,
+      "text": "Lapisan reflektif, permukaan pemantul di luar dinding dalam, membantu menguranginya.",
+      "function": "lapisan reflektif",
+      "part_ids": [
+        "P-04"
+      ],
+      "claim_ids": [
+        "F-02"
+      ],
+      "planned_visual": "Sorot permukaan di sisi luar dinding dalam; warna hanya penanda ilustratif.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    },
+    {
+      "id": "B09",
+      "start_seconds": 29.767,
+      "end_seconds": 33.242,
+      "text": "Tutup rapatnya juga membatasi pertukaran udara.",
+      "function": "fungsi tutup",
+      "part_ids": [
+        "P-01"
+      ],
+      "claim_ids": [
+        "F-03"
+      ],
+      "planned_visual": "Sorot penutup dan area seal; jangan menambahkan komponen yang belum didukung sumber.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    },
+    {
+      "id": "B10",
+      "start_seconds": 33.242,
+      "end_seconds": 37.18,
+      "text": "Panas tetap bisa lolos, termasuk lewat sambungan leher.",
+      "function": "jalur tersisa",
+      "part_ids": [
+        "P-03",
+        "P-06"
+      ],
+      "claim_ids": [
+        "F-04"
+      ],
+      "planned_visual": "Tunjukkan sambungan leher sebagai salah satu jalur yang masih tersisa.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    },
+    {
+      "id": "B11",
+      "start_seconds": 37.18,
+      "end_seconds": 40.98,
+      "text": "Makanya isinya tetap mendingin, cuma lebih lambat.",
+      "function": "jawaban mekanisme",
+      "part_ids": [
+        "P-01",
+        "P-03",
+        "P-04",
+        "P-05",
+        "P-06"
+      ],
+      "claim_ids": [
+        "F-01",
+        "F-02",
+        "F-03",
+        "F-04"
+      ],
+      "planned_visual": "Rangkum penghambatan jalur panas; tidak menampilkan kurva pendinginan rekaan.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    },
+    {
+      "id": "B12",
+      "start_seconds": 40.98,
+      "end_seconds": 49.642,
+      "text": "Contoh dari Zojirushi: air sembilan puluh lima derajat Celsius, enam jam kemudian masih minimal tujuh puluh satu, di ruangan dua puluh derajat.",
+      "function": "contoh spesifikasi",
+      "part_ids": [],
+      "claim_ids": [
+        "F-05"
+      ],
+      "planned_visual": "Kartu menyebut SM-WA48, suhu awal beserta toleransi, durasi, batas akhir, dan kondisi ruangan; data diambil dari JSON riset.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    },
+    {
+      "id": "B13",
+      "start_seconds": 49.642,
+      "end_seconds": 51.76,
+      "text": "Itulah kenapa, meskipun...",
+      "function": "jembatan loop",
+      "part_ids": [],
+      "claim_ids": [],
+      "planned_visual": "Kembali ke keadaan menjelang pembukaan; sambungkan ke awal tanpa menambah fakta baru.",
+      "word_alignment_status": "pending_user_audio_feedback"
+    }
+  ]
+}
